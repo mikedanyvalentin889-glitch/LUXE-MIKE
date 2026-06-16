@@ -49,10 +49,17 @@
         @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
         @keyframes shake { 0%,100% { transform: translateX(0); } 10%,30%,50%,70%,90% { transform: translateX(-3px); } 20%,40%,60%,80% { transform: translateX(3px); } }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes countUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes borderGlow { 0%,100% { border-color: rgba(212,175,55,0.3); } 50% { border-color: rgba(212,175,55,0.8); } }
         .animate-float { animation: float 6s ease-in-out infinite; }
         .animate-glow { animation: glow 3s ease-in-out infinite; }
         .animate-slide-in { animation: slideIn 0.8s ease-out forwards; }
         .animate-shake { animation: shake 0.5s ease-in-out; }
+        .animate-count { animation: countUp 0.5s ease-out forwards; }
+        .animate-fade-scale { animation: fadeInScale 0.5s ease-out forwards; }
+        .animate-slide-up { animation: slideUp 0.6s ease-out forwards; }
         .product-card-3d { transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.23,1,0.32,1); }
         .product-card-3d:hover { transform: translateY(-10px) rotateX(5deg) rotateY(5deg); }
         .magnetic-btn { transition: all 0.3s cubic-bezier(0.23,1,0.32,1); position: relative; overflow: hidden; }
@@ -108,6 +115,50 @@
         .zone-card:hover, .zone-card.selected { border-color: #D4AF37; background: rgba(212,175,55,0.05); }
         .gallery-thumb { transition: all 0.3s; border: 2px solid transparent; cursor: pointer; }
         .gallery-thumb:hover, .gallery-thumb.active { border-color: #D4AF37; }
+        .payment-card { transition: all 0.3s; border: 2px solid transparent; cursor: pointer; }
+        .payment-card:hover, .payment-card.selected { border-color: #D4AF37; background: rgba(212,175,55,0.05); }
+        .tracking-step { position: relative; }
+        .tracking-step::after { content: ''; position: absolute; top: 20px; left: 50%; width: 100%; height: 2px; background: rgba(255,255,255,0.1); z-index: 0; }
+        .tracking-step:last-child::after { display: none; }
+        .tracking-dot { position: relative; z-index: 1; transition: all 0.5s; }
+        .tracking-dot.active { background: #D4AF37; box-shadow: 0 0 20px rgba(212,175,55,0.5); }
+        .tracking-dot.completed { background: #25D366; }
+        .urgency-bar { animation: borderGlow 2s infinite; }
+        .stock-pulse { animation: pulse 1.5s infinite; }
+        .compare-price { position: relative; }
+        .compare-price::after { content: ''; position: absolute; left: 0; top: 50%; width: 100%; height: 2px; background: #CE1126; transform: rotate(-5deg); }
+        .wishlist-btn { transition: all 0.3s; }
+        .wishlist-btn:hover, .wishlist-btn.active { color: #CE1126; transform: scale(1.2); }
+        .coupon-input { transition: all 0.3s; }
+        .coupon-input:focus { border-color: #D4AF37; box-shadow: 0 0 15px rgba(212,175,55,0.2); }
+        .size-guide-table { border-collapse: collapse; }
+        .size-guide-table td, .size-guide-table th { border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; text-align: center; }
+        .size-guide-table th { background: rgba(212,175,55,0.1); color: #D4AF37; }
+        .faq-item { transition: all 0.3s; }
+        .faq-item:hover { background: rgba(255,255,255,0.03); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .faq-answer.open { max-height: 500px; }
+        .faq-icon { transition: transform 0.3s; }
+        .faq-icon.open { transform: rotate(180deg); }
+        .review-bar { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.1); overflow: hidden; }
+        .review-fill { height: 100%; background: #D4AF37; border-radius: 3px; transition: width 0.8s ease-out; }
+        .related-card { transition: all 0.4s; }
+        .related-card:hover { transform: translateY(-8px); }
+        .breadcrumbs { font-size: 13px; }
+        .breadcrumbs a:hover { color: #D4AF37; }
+        .zoom-container { overflow: hidden; cursor: zoom-in; }
+        .zoom-container img { transition: transform 0.3s; }
+        .zoom-container:hover img { transform: scale(1.5); }
+        .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; transform: translateY(100%); transition: transform 0.3s; }
+        .sticky-bar.show { transform: translateY(0); }
+        .notification-dot { animation: pulse 2s infinite; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .progress-ring { transform: rotate(-90deg); }
+        .progress-ring-circle { transition: stroke-dashoffset 0.5s; }
+        .tooltip-custom { position: relative; }
+        .tooltip-custom::before { content: attr(data-tooltip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); padding: 6px 12px; background: #D4AF37; color: #0a0a0a; font-size: 12px; font-weight: 600; border-radius: 8px; white-space: nowrap; opacity: 0; pointer-events: none; transition: all 0.3s; margin-bottom: 8px; }
+        .tooltip-custom:hover::before { opacity: 1; }
         @media (max-width: 768px) {
             .whatsapp-float { bottom: 80px; right: 20px; }
             .whatsapp-btn { width: 50px; height: 50px; }
@@ -124,7 +175,7 @@
         <p class="text-gray-400 mt-2 text-sm">Chargement...</p>
     </div>
 
-    <!-- Toast -->
+    <!-- Toast Notification -->
     <div id="toast" class="toast fixed top-24 right-6 z-50 glass-dark px-6 py-4 rounded-xl flex items-center gap-3">
         <i class="fas fa-check-circle text-haiti-gold text-xl"></i>
         <div>
@@ -166,10 +217,16 @@
                 <div class="hidden md:flex items-center gap-8">
                     <a href="#accueil" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Accueil</a>
                     <a href="#produits" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Produits</a>
+                    <a href="#apropos" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">A Propos</a>
                     <a href="#livraison" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Livraison</a>
+                    <a href="#faq" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">FAQ</a>
                     <a href="#contact" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
                 </div>
                 <div class="flex items-center gap-4">
+                    <button onclick="toggleWishlist()" class="relative p-2 hover:bg-white/10 rounded-full transition-colors hidden md:flex">
+                        <i class="fas fa-heart text-xl text-gray-400 hover:text-red-500 transition-colors"></i>
+                        <span id="wishlist-count" class="cart-badge hidden">0</span>
+                    </button>
                     <a href="https://wa.me/50938954747" target="_blank" class="hidden md:flex items-center gap-2 text-sm text-green-400 hover:text-green-300 transition-colors">
                         <i class="fab fa-whatsapp"></i><span>509 3895-4747</span>
                     </a>
@@ -190,7 +247,9 @@
         <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 p-2"><i class="fas fa-times text-2xl text-white"></i></button>
         <a href="#accueil" onclick="toggleMobileMenu()" class="font-playfair text-3xl text-white hover:text-haiti-gold transition-colors">Accueil</a>
         <a href="#produits" onclick="toggleMobileMenu()" class="font-playfair text-3xl text-white hover:text-haiti-gold transition-colors">Produits</a>
+        <a href="#apropos" onclick="toggleMobileMenu()" class="font-playfair text-3xl text-white hover:text-haiti-gold transition-colors">A Propos</a>
         <a href="#livraison" onclick="toggleMobileMenu()" class="font-playfair text-3xl text-white hover:text-haiti-gold transition-colors">Livraison</a>
+        <a href="#faq" onclick="toggleMobileMenu()" class="font-playfair text-3xl text-white hover:text-haiti-gold transition-colors">FAQ</a>
         <a href="#contact" onclick="toggleMobileMenu()" class="font-playfair text-3xl text-white hover:text-haiti-gold transition-colors">Contact</a>
         <a href="https://wa.me/50938954747" target="_blank" class="mt-4 bg-green-500 text-white px-8 py-3 rounded-full font-bold flex items-center gap-2"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
@@ -204,7 +263,15 @@
         </div>
         <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
         <div class="p-6 border-t border-white/10 space-y-4">
+            <!-- Coupon Code -->
+            <div class="flex gap-2">
+                <input type="text" id="coupon-input" class="coupon-input flex-1 px-4 py-2 rounded-xl text-white placeholder-gray-500 text-sm bg-white/5 border border-white/10" placeholder="Code promo">
+                <button onclick="applyCoupon()" class="px-4 py-2 bg-haiti-gold text-haiti-dark rounded-xl font-bold text-sm hover:shadow-lg transition-all">Appliquer</button>
+            </div>
+            <p id="coupon-message" class="text-xs text-green-400 hidden"></p>
+
             <div class="flex justify-between items-center"><span class="text-gray-400">Sous-total</span><span id="cart-subtotal" class="font-bold text-xl">0 HTG</span></div>
+            <div class="flex justify-between items-center"><span class="text-gray-400">Reduction</span><span id="cart-discount" class="text-green-400">0 HTG</span></div>
             <div class="flex justify-between items-center"><span class="text-gray-400">Livraison</span><span id="cart-shipping" class="text-haiti-gold">Gratuite</span></div>
             <div class="border-t border-white/10 pt-4 flex justify-between items-center"><span class="font-bold text-lg">Total</span><span id="cart-total" class="font-bold text-2xl text-haiti-gold">0 HTG</span></div>
             <button onclick="openCheckout()" class="w-full magnetic-btn bg-green-500 text-white font-bold py-4 rounded-xl hover:shadow-lg hover:shadow-green-500/30 transition-all flex items-center justify-center gap-2">
@@ -212,6 +279,19 @@
             </button>
             <p class="text-xs text-gray-500 text-center">Vous serez redirige vers WhatsApp avec votre commande pre-remplie</p>
             <button onclick="toggleCart()" class="w-full py-3 text-gray-400 hover:text-white transition-colors text-sm">Continuer les achats</button>
+        </div>
+    </div>
+
+    <!-- Wishlist Sidebar -->
+    <div id="wishlist-overlay" class="fixed inset-0 bg-black/60 z-50 hidden" onclick="toggleWishlist()"></div>
+    <div id="wishlist-sidebar" class="cart-sidebar fixed top-0 right-0 h-full w-full max-w-md bg-haiti-dark border-l border-white/10 z-50 flex flex-col">
+        <div class="p-6 border-b border-white/10 flex items-center justify-between">
+            <h2 class="font-playfair text-2xl font-bold text-haiti-gold">Ma Liste de Souhaits</h2>
+            <button onclick="toggleWishlist()" class="p-2 hover:bg-white/10 rounded-full transition-colors"><i class="fas fa-times text-xl text-white"></i></button>
+        </div>
+        <div id="wishlist-items" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+        <div class="p-6 border-t border-white/10">
+            <button onclick="toggleWishlist()" class="w-full py-3 text-gray-400 hover:text-white transition-colors text-sm">Continuer les achats</button>
         </div>
     </div>
 
@@ -314,6 +394,104 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="apropos" class="py-20 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-haiti-gold/5 to-transparent"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <p class="text-haiti-gold tracking-widest text-sm font-semibold mb-4 uppercase">Notre Histoire</p>
+                    <h2 class="font-playfair text-4xl md:text-5xl font-bold text-white mb-6">Luxe Haiti,<br>Fiertee Nationale</h2>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Fonde au coeur de Delmas 31, Luxe Haiti represente l excellence de la mode haitienne. Notre mission est de creer des produits qui refletent la richesse culturelle et le talent creatif de notre nation.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed mb-8">
+                        Chaque snapback et chaque paire de sandales est confectionnee avec soin, utilisant des materiaux premium et des techniques artisanales transmises de generation en generation.
+                    </p>
+                    <div class="flex gap-8">
+                        <div>
+                            <div class="font-playfair text-3xl font-bold text-haiti-gold">2020</div>
+                            <div class="text-gray-400 text-sm">Annee de Fondation</div>
+                        </div>
+                        <div>
+                            <div class="font-playfair text-3xl font-bold text-haiti-gold">Delmas 31</div>
+                            <div class="text-gray-400 text-sm">Notre Quartier</div>
+                        </div>
+                        <div>
+                            <div class="font-playfair text-3xl font-bold text-haiti-gold">509 3895-4747</div>
+                            <div class="text-gray-400 text-sm">WhatsApp Direct</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative reveal">
+                    <div class="absolute inset-0 bg-gradient-to-br from-haiti-gold/20 to-haiti-red/20 rounded-3xl transform rotate-3"></div>
+                    <div class="glass rounded-3xl p-8 relative transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-4">
+                                <div class="h-32 rounded-2xl bg-gradient-to-br from-haiti-gold/30 to-haiti-gold/10 flex items-center justify-center">
+                                    <i class="fas fa-hat-cowboy text-4xl text-haiti-gold"></i>
+                                </div>
+                                <div class="h-48 rounded-2xl bg-gradient-to-br from-haiti-red/30 to-haiti-red/10 flex items-center justify-center">
+                                    <i class="fas fa-shoe-prints text-4xl text-haiti-red"></i>
+                                </div>
+                            </div>
+                            <div class="space-y-4 mt-8">
+                                <div class="h-48 rounded-2xl bg-gradient-to-br from-haiti-blue/30 to-haiti-blue/10 flex items-center justify-center">
+                                    <i class="fas fa-flag text-4xl text-haiti-blue"></i>
+                                </div>
+                                <div class="h-32 rounded-2xl bg-gradient-to-br from-haiti-gold/30 to-haiti-gold/10 flex items-center justify-center">
+                                    <i class="fas fa-heart text-4xl text-haiti-gold"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials with Reviews -->
+    <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <p class="text-haiti-gold tracking-widest text-sm font-semibold mb-4 uppercase">Temoignages</p>
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-white">Ce que Disent Nos Clients</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card glass rounded-2xl p-8 reveal">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic">"La qualite est incroyable! La livraison a Delmas a ete super rapide. Je recommande a 100%"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-haiti-gold to-haiti-red flex items-center justify-center font-bold text-haiti-dark">JM</div>
+                        <div><div class="font-semibold">Jean Michel</div><div class="text-gray-400 text-sm">Delmas 33 - <span class="text-green-400 text-xs">Achat verifie</span></div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass rounded-2xl p-8 reveal">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic">"J ai commande sur WhatsApp, reponse immediate. Les sandales sont confortables et stylies. Merci Luxe Haiti!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-haiti-blue to-haiti-gold flex items-center justify-center font-bold text-white">MP</div>
+                        <div><div class="font-semibold">Marie Pierre</div><div class="text-gray-400 text-sm">Petion-Ville - <span class="text-green-400 text-xs">Achat verifie</span></div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass rounded-2xl p-8 reveal">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star-half-alt text-haiti-gold"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic">"Service client exceptionnel. Le livreur m a appele avant d arriver. Fiertee haitienne!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-haiti-red to-haiti-blue flex items-center justify-center font-bold text-white">RJ</div>
+                        <div><div class="font-semibold">Robert Joseph</div><div class="text-gray-400 text-sm">Carrefour - <span class="text-green-400 text-xs">Achat verifie</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Delivery Section -->
     <section id="livraison" class="py-20 px-6 relative">
         <div class="max-w-7xl mx-auto">
@@ -353,6 +531,64 @@
             </div>
             <div class="mt-8 text-center reveal">
                 <p class="text-gray-400 text-sm">Autres zones? <a href="https://wa.me/50938954747?text=Bonjour%2C%20je%20voudrais%20connaitre%20les%20frais%20de%20livraison%20pour%20ma%20zone" target="_blank" class="text-haiti-gold hover:underline">Contactez-nous sur WhatsApp</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 px-6 relative">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <p class="text-haiti-gold tracking-widest text-sm font-semibold mb-4 uppercase">Questions</p>
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-white mb-6">Foire Aux Questions</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-haiti-gold to-transparent mx-auto"></div>
+            </div>
+            <div class="space-y-4 reveal">
+                <div class="faq-item glass rounded-xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-semibold">Comment passer commande?</h3>
+                        <i class="fas fa-chevron-down faq-icon transition-transform"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-400 text-sm">
+                        C est simple! Cliquez sur le produit qui vous interesse, choisissez la couleur et la taille, puis cliquez sur "Commander sur WhatsApp". Vous serez redirige vers WhatsApp avec votre commande pre-remplie. Envoyez le message et nous vous repondrons en moins de 5 minutes.
+                    </div>
+                </div>
+                <div class="faq-item glass rounded-xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-semibold">Quels sont les modes de paiement acceptes?</h3>
+                        <i class="fas fa-chevron-down faq-icon transition-transform"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-400 text-sm">
+                        Nous acceptons plusieurs modes de paiement: Cash a la livraison, MonCash (Digicel), NatCash (Natcom), et transfert. Pour les paiements mobile, nous vous enverrons le numero a utiliser apres confirmation de votre commande sur WhatsApp.
+                    </div>
+                </div>
+                <div class="faq-item glass rounded-xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-semibold">Combien de temps prend la livraison?</h3>
+                        <i class="fas fa-chevron-down faq-icon transition-transform"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-400 text-sm">
+                        Delmas 31 et environs: 2-4 heures (gratuit). Petion-Ville et Tabarre: 24 heures (200 HTG). Carrefour et Cite Soleil: 24-48 heures (300 HTG). Pour les autres zones, contactez-nous sur WhatsApp pour un devis personnalise.
+                    </div>
+                </div>
+                <div class="faq-item glass rounded-xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-semibold">Puis-je retourner un produit?</h3>
+                        <i class="fas fa-chevron-down faq-icon transition-transform"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-400 text-sm">
+                        Oui! Vous disposez de 7 jours pour retourner un produit non porte, dans son emballage d origine, avec le ticket de caisse. Contactez-nous sur WhatsApp pour organiser le retour. Les frais de retour sont a votre charge sauf en cas de produit defectueux.
+                    </div>
+                </div>
+                <div class="faq-item glass rounded-xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-semibold">Les produits sont-ils disponibles en magasin?</h3>
+                        <i class="fas fa-chevron-down faq-icon transition-transform"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-400 text-sm">
+                        Oui! Vous pouvez passer nous voir a Delmas 31, du lundi au samedi, de 8h a 18h. Cependant, nous vous recommandons de verifier la disponibilite sur WhatsApp avant de vous deplacer, car certains modeles peuvent etre en rupture de stock.
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -426,7 +662,7 @@
                     <h4 class="font-semibold mb-4">Service Client</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
                         <li><a href="#livraison" class="hover:text-haiti-gold transition-colors">Livraison et Zones</a></li>
-                        <li><a href="#" class="hover:text-haiti-gold transition-colors">Retours 7 jours</a></li>
+                        <li><a href="#faq" class="hover:text-haiti-gold transition-colors">FAQ</a></li>
                         <li><a href="https://wa.me/50938954747" target="_blank" class="hover:text-green-400 transition-colors">WhatsApp Direct</a></li>
                     </ul>
                 </div>
@@ -462,18 +698,27 @@
     <script>
         // Products Data
         const products = [
-            { id: 1, name: "Snapback Classic Noir", category: "snapback", price: 2500, image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=400&fit=crop", description: "Casquette snapback premium en coton avec broderie 3D. Ajustable 55-60cm, style urbain elegant. Tissu respirant, parfait pour le climat tropical.", badge: "Best-seller", stock: 12, soldCount: 89, colors: [{name:"Noir",hex:"#1a1a1a"},{name:"Blanc",hex:"#f5f5f5"},{name:"Rouge",hex:"#CE1126"}], sizes: ["Ajustable"], features: ["Broderie 3D","Coton premium","Ajustable","Lavable"] },
-            { id: 2, name: "Snapback Drapeau Haiti", category: "snapback", price: 3000, image: "https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=400&h=400&fit=crop", description: "Edition speciale avec les couleurs du drapeau haitien. Fiertee nationale. Broderie haute qualite, ne decolore pas au soleil.", badge: "Nouveau", stock: 8, soldCount: 34, colors: [{name:"Drapeau",hex:"#00209F"}], sizes: ["Ajustable"], features: ["Couleurs drapeau","Broderie resistante","Ajustable","Edition limitee"] },
-            { id: 3, name: "Snapback Or et Noir", category: "snapback", price: 3500, image: "https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=400&h=400&fit=crop", description: "Design luxe avec accents dores. Pour ceux qui aiment se demarquer. Finitions haut de gamme, logo metal.", badge: "Premium", stock: 5, soldCount: 56, colors: [{name:"Or/Noir",hex:"#D4AF37"}], sizes: ["Ajustable"], features: ["Accents dores","Logo metal","Premium","Ajustable"] },
-            { id: 4, name: "Sandales Classiques", category: "sandale", price: 1500, image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=400&h=400&fit=crop", description: "Sandales confortables en simili-cuir. Parfaites pour le quotidien. Semelle antiderapante, ideal pour les rues de Port-au-Prince.", badge: "Best-seller", stock: 20, soldCount: 156, colors: [{name:"Marron",hex:"#8B4513"},{name:"Noir",hex:"#1a1a1a"}], sizes: ["38","39","40","41","42","43","44"], features: ["Simili-cuir","Semelle antiderapante","Confortable","Durable"] },
-            { id: 5, name: "Sandales Premium", category: "sandale", price: 2500, image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=400&fit=crop", description: "Sandales haut de gamme avec semelle ergonomique et finitions luxe. Cuir veritable, confort maximal toute la journee.", badge: "Premium", stock: 15, soldCount: 78, colors: [{name:"Noir",hex:"#1a1a1a"},{name:"Marron",hex:"#8B4513"}], sizes: ["38","39","40","41","42","43","44","45"], features: ["Cuir veritable","Semelle ergonomique","Premium","Durable"] },
-            { id: 6, name: "Sandales Sport", category: "sandale", price: 2000, image: "https://images.unsplash.com/photo-1562183241-b937e95585b6?w=400&h=400&fit=crop", description: "Style sportif avec bandes reglables. Confort maximal toute la journee. Ideal pour la marche et le sport leger.", badge: "Nouveau", stock: 18, soldCount: 45, colors: [{name:"Noir",hex:"#1a1a1a"},{name:"Bleu",hex:"#00209F"},{name:"Rouge",hex:"#CE1126"}], sizes: ["38","39","40","41","42","43","44"], features: ["Bandes reglables","Style sportif","Confortable","Respirant"] }
+            { id: 1, name: "Snapback Classic Noir", category: "snapback", price: 2500, originalPrice: 3000, image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=400&fit=crop", description: "Casquette snapback premium en coton avec broderie 3D. Ajustable 55-60cm, style urbain elegant. Tissu respirant, parfait pour le climat tropical.", badge: "Best-seller", stock: 12, soldCount: 89, colors: [{name:"Noir",hex:"#1a1a1a"},{name:"Blanc",hex:"#f5f5f5"},{name:"Rouge",hex:"#CE1126"}], sizes: ["Ajustable"], features: ["Broderie 3D","Coton premium","Ajustable","Lavable"] },
+            { id: 2, name: "Snapback Drapeau Haiti", category: "snapback", price: 3000, originalPrice: 3500, image: "https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=400&h=400&fit=crop", description: "Edition speciale avec les couleurs du drapeau haitien. Fiertee nationale. Broderie haute qualite, ne decolore pas au soleil.", badge: "Nouveau", stock: 8, soldCount: 34, colors: [{name:"Drapeau",hex:"#00209F"}], sizes: ["Ajustable"], features: ["Couleurs drapeau","Broderie resistante","Ajustable","Edition limitee"] },
+            { id: 3, name: "Snapback Or et Noir", category: "snapback", price: 3500, originalPrice: 4200, image: "https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=400&h=400&fit=crop", description: "Design luxe avec accents dores. Pour ceux qui aiment se demarquer. Finitions haut de gamme, logo metal.", badge: "Premium", stock: 5, soldCount: 56, colors: [{name:"Or/Noir",hex:"#D4AF37"}], sizes: ["Ajustable"], features: ["Accents dores","Logo metal","Premium","Ajustable"] },
+            { id: 4, name: "Sandales Classiques", category: "sandale", price: 1500, originalPrice: 1800, image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=400&h=400&fit=crop", description: "Sandales confortables en simili-cuir. Parfaites pour le quotidien. Semelle antiderapante, ideal pour les rues de Port-au-Prince.", badge: "Best-seller", stock: 20, soldCount: 156, colors: [{name:"Marron",hex:"#8B4513"},{name:"Noir",hex:"#1a1a1a"}], sizes: ["38","39","40","41","42","43","44"], features: ["Simili-cuir","Semelle antiderapante","Confortable","Durable"] },
+            { id: 5, name: "Sandales Premium", category: "sandale", price: 2500, originalPrice: 3000, image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=400&fit=crop", description: "Sandales haut de gamme avec semelle ergonomique et finitions luxe. Cuir veritable, confort maximal toute la journee.", badge: "Premium", stock: 15, soldCount: 78, colors: [{name:"Noir",hex:"#1a1a1a"},{name:"Marron",hex:"#8B4513"}], sizes: ["38","39","40","41","42","43","44","45"], features: ["Cuir veritable","Semelle ergonomique","Premium","Durable"] },
+            { id: 6, name: "Sandales Sport", category: "sandale", price: 2000, originalPrice: 2400, image: "https://images.unsplash.com/photo-1562183241-b937e95585b6?w=400&h=400&fit=crop", description: "Style sportif avec bandes reglables. Confort maximal toute la journee. Ideal pour la marche et le sport leger.", badge: "Nouveau", stock: 18, soldCount: 45, colors: [{name:"Noir",hex:"#1a1a1a"},{name:"Bleu",hex:"#00209F"},{name:"Rouge",hex:"#CE1126"}], sizes: ["38","39","40","41","42","43","44"], features: ["Bandes reglables","Style sportif","Confortable","Respirant"] }
         ];
 
         let cart = [];
+        let wishlist = [];
         let selectedProduct = null;
         let selectedColor = null;
         let selectedSize = null;
+        let discount = 0;
+        let appliedCoupon = null;
+
+        const coupons = {
+            "LUXE10": 0.10,
+            "DELMAS": 0.15,
+            "HAITI": 0.20
+        };
 
         document.addEventListener('DOMContentLoaded', () => {
             initThreeJS();
@@ -482,6 +727,7 @@
             setupScrollAnimations();
             setupNavbarScroll();
             startRecentPopups();
+            loadCartFromStorage();
             setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 2000);
         });
 
@@ -569,11 +815,17 @@
                         </div>
                         ${product.badge ? `<span class="absolute top-4 left-4 px-3 py-1 bg-haiti-gold text-haiti-dark text-xs font-bold rounded-full">${product.badge}</span>` : ''}
                         ${product.stock < 10 ? `<span class="absolute top-4 right-4 px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full animate-pulse">${product.stock} restants</span>` : ''}
+                        <button onclick="event.stopPropagation(); toggleWishlistItem(${product.id})" class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center wishlist-btn ${isInWishlist(product.id) ? 'active' : ''}">
+                            <i class="fas fa-heart ${isInWishlist(product.id) ? 'text-red-500' : 'text-white'}"></i>
+                        </button>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="font-playfair text-xl font-bold text-white cursor-pointer hover:text-haiti-gold transition-colors" onclick="openProductModal(${product.id})">${product.name}</h3>
-                            <span class="price-tag bg-haiti-gold text-haiti-dark px-3 py-1 rounded-lg font-bold text-sm">${product.price} HTG</span>
+                            <div class="flex flex-col items-end">
+                                <span class="price-tag bg-haiti-gold text-haiti-dark px-3 py-1 rounded-lg font-bold text-sm">${product.price} HTG</span>
+                                <span class="text-xs text-gray-500 line-through mt-1">${product.originalPrice} HTG</span>
+                            </div>
                         </div>
                         <p class="text-gray-400 text-sm mb-3">${product.description.substring(0, 80)}...</p>
                         <div class="flex items-center justify-between mb-4">
@@ -605,6 +857,60 @@
             renderProducts(category);
         }
 
+        function isInWishlist(productId) {
+            return wishlist.some(item => item.id === productId);
+        }
+
+        function toggleWishlistItem(productId) {
+            const product = products.find(p => p.id === productId);
+            if (isInWishlist(productId)) {
+                wishlist = wishlist.filter(item => item.id !== productId);
+                showToast('Retire', product.name + ' retire de la liste');
+            } else {
+                wishlist.push(product);
+                showToast('Ajoute', product.name + ' ajoute aux favoris');
+            }
+            updateWishlist();
+            renderProducts(document.querySelector('.filter-btn.active')?.dataset.filter || 'all');
+        }
+
+        function toggleWishlist() {
+            const sidebar = document.getElementById('wishlist-sidebar');
+            const overlay = document.getElementById('wishlist-overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('hidden');
+            document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+        }
+
+        function updateWishlist() {
+            const wishlistItems = document.getElementById('wishlist-items');
+            const wishlistCount = document.getElementById('wishlist-count');
+
+            if (wishlistCount) {
+                wishlistCount.textContent = wishlist.length;
+                wishlistCount.classList.toggle('hidden', wishlist.length === 0);
+            }
+
+            if (wishlist.length === 0) {
+                wishlistItems.innerHTML = `<div class="text-center py-12"><i class="fas fa-heart text-4xl text-gray-600 mb-4"></i><p class="text-gray-400">Votre liste est vide</p></div>`;
+            } else {
+                wishlistItems.innerHTML = wishlist.map(item => `
+                    <div class="flex gap-4 glass rounded-xl p-4">
+                        <img src="${item.image}" alt="${item.name}" class="w-20 h-20 rounded-lg object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-sm mb-1">${item.name}</h4>
+                            <p class="text-haiti-gold font-bold">${item.price} HTG</p>
+                            <div class="flex gap-2 mt-2">
+                                <button onclick="quickAddToCart(${item.id}); toggleWishlistItem(${item.id})" class="text-xs text-haiti-gold hover:underline">Ajouter au panier</button>
+                                <button onclick="toggleWishlistItem(${item.id})" class="text-xs text-gray-400 hover:text-red-500">Retirer</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Product Modal
         function openProductModal(productId) {
             const product = products.find(p => p.id === productId);
             selectedProduct = product;
@@ -616,19 +922,25 @@
 
             content.innerHTML = `
                 <div class="space-y-4">
-                    <div class="relative rounded-2xl overflow-hidden">
+                    <div class="relative rounded-2xl overflow-hidden zoom-container">
                         <img src="${product.image}" alt="${product.name}" class="w-full h-80 object-cover">
                         ${product.badge ? `<span class="absolute top-4 left-4 px-3 py-1 bg-haiti-gold text-haiti-dark text-xs font-bold rounded-full">${product.badge}</span>` : ''}
                     </div>
                     <div class="flex gap-2">
                         ${product.colors.map((c, i) => `<div class="color-btn ${i === 0 ? 'active' : ''}" style="background:${c.hex}" onclick="selectColor(${i}, this)" title="${c.name}"></div>`).join('')}
                     </div>
+                    <div class="flex gap-2">
+                        <button onclick="shareProduct('facebook', ${product.id})" class="share-btn w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 hover:bg-blue-600 hover:text-white"><i class="fab fa-facebook-f"></i></button>
+                        <button onclick="shareProduct('whatsapp', ${product.id})" class="share-btn w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 hover:bg-green-500 hover:text-white"><i class="fab fa-whatsapp"></i></button>
+                        <button onclick="shareProduct('copy', ${product.id})" class="share-btn w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-white/20"><i class="fas fa-link"></i></button>
+                    </div>
                 </div>
                 <div class="space-y-4">
                     <h2 class="font-playfair text-3xl font-bold text-white">${product.name}</h2>
                     <div class="flex items-center gap-4">
                         <span class="text-3xl font-bold text-haiti-gold">${product.price} HTG</span>
-                        <span class="text-gray-400 line-through">${Math.round(product.price * 1.2)} HTG</span>
+                        <span class="text-gray-400 line-through text-lg">${product.originalPrice} HTG</span>
+                        <span class="px-2 py-1 bg-red-500/20 text-red-400 text-xs font-bold rounded">-${Math.round((1 - product.price/product.originalPrice)*100)}%</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <div class="flex gap-1"><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i></div>
@@ -666,10 +978,11 @@
                         </a>
                     </div>
 
-                    <div class="flex gap-2 pt-2">
-                        <button onclick="shareProduct('facebook', ${product.id})" class="share-btn w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 hover:bg-blue-600 hover:text-white"><i class="fab fa-facebook-f"></i></button>
-                        <button onclick="shareProduct('whatsapp', ${product.id})" class="share-btn w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 hover:bg-green-500 hover:text-white"><i class="fab fa-whatsapp"></i></button>
-                        <button onclick="shareProduct('copy', ${product.id})" class="share-btn w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-white/20"><i class="fas fa-link"></i></button>
+                    <div class="p-4 bg-white/5 rounded-xl">
+                        <p class="text-sm font-medium mb-2">Caracteristiques:</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${product.features.map(f => `<span class="px-3 py-1 bg-white/10 rounded-full text-xs text-gray-300">${f}</span>`).join('')}
+                        </div>
                     </div>
                 </div>
             `;
@@ -701,6 +1014,7 @@
             const item = { ...selectedProduct, selectedColor: selectedColor, selectedSize: selectedSize, uniqueId: Date.now() };
             cart.push(item);
             updateCart();
+            saveCartToStorage();
             showToast('Ajoute au panier!', selectedProduct.name + ' (' + selectedColor.name + ')');
             closeProductModal();
         }
@@ -710,22 +1024,27 @@
             const item = { ...product, selectedColor: product.colors[0], selectedSize: product.sizes[0], uniqueId: Date.now() };
             cart.push(item);
             updateCart();
+            saveCartToStorage();
             showToast('Ajoute au panier!', product.name);
         }
 
         function removeFromCart(uniqueId) {
             cart = cart.filter(item => item.uniqueId !== uniqueId);
             updateCart();
+            saveCartToStorage();
         }
 
         function updateCart() {
             const cartItems = document.getElementById('cart-items');
             const totalItems = cart.length;
-            const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            const discountAmount = Math.round(subtotal * discount);
+            const total = subtotal - discountAmount;
 
             document.getElementById('cart-count').textContent = totalItems;
-            document.getElementById('cart-subtotal').textContent = totalPrice + ' HTG';
-            document.getElementById('cart-total').textContent = totalPrice + ' HTG';
+            document.getElementById('cart-subtotal').textContent = subtotal + ' HTG';
+            document.getElementById('cart-discount').textContent = discountAmount > 0 ? '-' + discountAmount + ' HTG' : '0 HTG';
+            document.getElementById('cart-total').textContent = total + ' HTG';
 
             if (cart.length === 0) {
                 cartItems.innerHTML = `<div class="text-center py-12"><i class="fas fa-shopping-bag text-4xl text-gray-600 mb-4"></i><p class="text-gray-400">Votre panier est vide</p><a href="#produits" onclick="toggleCart()" class="text-haiti-gold hover:underline text-sm mt-2 inline-block">Continuer les achats</a></div>`;
@@ -744,7 +1063,7 @@
             }
         }
 
-        function clearCart() { cart = []; updateCart(); }
+        function clearCart() { cart = []; discount = 0; appliedCoupon = null; updateCart(); saveCartToStorage(); }
 
         function toggleCart() {
             const sidebar = document.getElementById('cart-sidebar');
@@ -762,14 +1081,39 @@
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // WhatsApp Checkout - THE KEY FEATURE
+        // Coupon System
+        function applyCoupon() {
+            const input = document.getElementById('coupon-input');
+            const code = input.value.trim().toUpperCase();
+            const message = document.getElementById('coupon-message');
+
+            if (coupons[code]) {
+                discount = coupons[code];
+                appliedCoupon = code;
+                updateCart();
+                message.textContent = 'Code ' + code + ' applique! -' + Math.round(discount * 100) + '% de reduction';
+                message.classList.remove('hidden', 'text-red-400');
+                message.classList.add('text-green-400');
+                showToast('Code promo applique!', 'Reduction de ' + Math.round(discount * 100) + '%');
+            } else {
+                message.textContent = 'Code invalide. Essayez LUXE10, DELMAS ou HAITI';
+                message.classList.remove('hidden', 'text-green-400');
+                message.classList.add('text-red-400');
+                showToast('Code invalide', 'Essayez LUXE10, DELMAS ou HAITI');
+            }
+        }
+
+        // WhatsApp Checkout
         function openCheckout() {
             if (cart.length === 0) { showToast('Panier vide', 'Ajoutez des produits d abord'); return; }
 
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            const discountAmount = Math.round(subtotal * discount);
+            const total = subtotal - discountAmount;
+
             let message = 'NOUVELLE COMMANDE - LUXE HAITI%0A%0A';
-            message += 'Client: ' + (document.querySelector('input[type="text"]')?.value || 'Nouveau Client') + '%0A';
-            message += 'Telephone: ' + (document.querySelector('input[type="tel"]')?.value || 'A confirmer') + '%0A%0A';
+            message += 'Client: ' + (document.querySelector('#contact-form input[type="text"]')?.value || 'Nouveau Client') + '%0A';
+            message += 'Telephone: ' + (document.querySelector('#contact-form input[type="tel"]')?.value || 'A confirmer') + '%0A%0A';
             message += 'PRODUITS:%0A';
 
             cart.forEach((item, i) => {
@@ -779,6 +1123,8 @@
                 message += '   Prix: ' + item.price + ' HTG%0A%0A';
             });
 
+            message += 'Sous-total: ' + subtotal + ' HTG%0A';
+            if (discount > 0) message += 'Reduction (' + appliedCoupon + '): -' + discountAmount + ' HTG%0A';
             message += 'TOTAL: ' + total + ' HTG%0A%0A';
             message += 'Livraison: A confirmer%0A';
             message += 'Adresse: A confirmer%0A%0A';
@@ -801,6 +1147,33 @@
             } else if (platform === 'copy') {
                 navigator.clipboard.writeText(url).then(() => showToast('Lien copie!', 'Partagez avec vos amis'));
             }
+        }
+
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const answer = element.querySelector('.faq-answer');
+            const icon = element.querySelector('.faq-icon');
+            answer.classList.toggle('open');
+            icon.classList.toggle('open');
+        }
+
+        // Local Storage
+        function saveCartToStorage() {
+            try {
+                localStorage.setItem('luxe_haiti_cart', JSON.stringify(cart));
+                localStorage.setItem('luxe_haiti_wishlist', JSON.stringify(wishlist));
+            } catch(e) {}
+        }
+
+        function loadCartFromStorage() {
+            try {
+                const savedCart = localStorage.getItem('luxe_haiti_cart');
+                const savedWishlist = localStorage.getItem('luxe_haiti_wishlist');
+                if (savedCart) cart = JSON.parse(savedCart);
+                if (savedWishlist) wishlist = JSON.parse(savedWishlist);
+                updateCart();
+                updateWishlist();
+            } catch(e) {}
         }
 
         function toggleMobileMenu() {
