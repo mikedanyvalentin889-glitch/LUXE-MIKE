@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXE HAITI - Mode Premium | Delmas 31</title>
+    <title>LUXE HAITI - Snapback & Sandales Premium | Delmas 31 | WhatsApp 50938954747</title>
+    <meta name="description" content="Achetez snapbacks et sandales premium en Haiti. Livraison a Delmas, Petion-Ville, Carrefour. Paiement MonCash, NatCash, ou cash. WhatsApp +509 38954747">
+    <meta name="keywords" content="snapback haiti, sandales haiti, luxe haiti, delmas 31, mode haitienne, casquette haiti">
+    <meta name="author" content="Luxe Haiti">
+    <meta property="og:title" content="Luxe Haiti - Mode Premium Delmas 31">
+    <meta property="og:description" content="Snapbacks 2500 HTG, Sandales 1500 HTG. Livraison 24h. WhatsApp +509 38954747">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#D4AF37">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -39,9 +46,13 @@
         @keyframes glow { 0%,100% { box-shadow: 0 0 20px rgba(212,175,55,0.3); } 50% { box-shadow: 0 0 40px rgba(212,175,55,0.6); } }
         @keyframes slideIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes particleFloat { 0% { transform: translateY(100vh) translateX(0); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.6; } 100% { transform: translateY(-100vh) translateX(100px); opacity: 0; } }
+        @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+        @keyframes shake { 0%,100% { transform: translateX(0); } 10%,30%,50%,70%,90% { transform: translateX(-3px); } 20%,40%,60%,80% { transform: translateX(3px); } }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .animate-float { animation: float 6s ease-in-out infinite; }
         .animate-glow { animation: glow 3s ease-in-out infinite; }
         .animate-slide-in { animation: slideIn 0.8s ease-out forwards; }
+        .animate-shake { animation: shake 0.5s ease-in-out; }
         .product-card-3d { transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.23,1,0.32,1); }
         .product-card-3d:hover { transform: translateY(-10px) rotateX(5deg) rotateY(5deg); }
         .magnetic-btn { transition: all 0.3s cubic-bezier(0.23,1,0.32,1); position: relative; overflow: hidden; }
@@ -59,7 +70,6 @@
         #loader.hidden { opacity: 0; visibility: hidden; }
         .loader-ring { width: 80px; height: 80px; border: 3px solid transparent; border-top-color: #D4AF37; border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .tilt-card { transform-style: preserve-3d; transition: transform 0.1s ease-out; }
         .neon-border { position: relative; }
         .neon-border::after { content: ''; position: absolute; inset: -2px; background: linear-gradient(45deg, #D4AF37, #CE1126, #00209F, #D4AF37); border-radius: inherit; z-index: -1; opacity: 0; transition: opacity 0.3s; filter: blur(8px); }
         .neon-border:hover::after { opacity: 0.6; }
@@ -67,8 +77,6 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
         .custom-input { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; }
         .custom-input:focus { border-color: #D4AF37; box-shadow: 0 0 20px rgba(212,175,55,0.2); outline: none; }
-        @keyframes successPop { 0% { transform: scale(0); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
-        .success-icon { animation: successPop 0.5s ease-out; }
         .nav-link { position: relative; }
         .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #D4AF37; transition: width 0.3s; }
         .nav-link:hover::after { width: 100%; }
@@ -80,32 +88,66 @@
         html { scroll-behavior: smooth; }
         .mobile-menu { transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.23,1,0.32,1); }
         .mobile-menu.open { transform: translateX(0); }
-        .testimonial-card { transform-style: preserve-3d; transition: all 0.5s; }
-        .testimonial-card:hover { transform: translateZ(30px) rotateY(5deg); }
-        .feature-icon { transition: all 0.3s; }
-        .feature-box:hover .feature-icon { transform: scale(1.2) rotate(10deg); color: #D4AF37; }
         .toast { transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.23,1,0.32,1); }
         .toast.show { transform: translateX(0); }
-        .progress-step { transition: all 0.5s; }
-        .progress-step.active { background: #D4AF37; box-shadow: 0 0 20px rgba(212,175,55,0.5); }
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; z-index: 100; }
+        .whatsapp-btn { width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: all 0.3s; position: relative; }
+        .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,0.6); }
+        .whatsapp-pulse { position: absolute; inset: 0; border-radius: 50%; background: #25D366; animation: pulse-ring 2s infinite; z-index: -1; }
+        .whatsapp-tooltip { position: absolute; right: 75px; top: 50%; transform: translateY(-50%); background: #25D366; color: white; padding: 8px 16px; border-radius: 12px; font-size: 13px; font-weight: 600; white-space: nowrap; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+        .whatsapp-btn:hover .whatsapp-tooltip { opacity: 1; }
+        .recent-popup { transform: translateX(-120%); transition: transform 0.5s cubic-bezier(0.23,1,0.32,1); }
+        .recent-popup.show { transform: translateX(0); }
+        .marquee-track { animation: marquee 30s linear infinite; }
+        .marquee-track:hover { animation-play-state: paused; }
+        .size-btn { transition: all 0.2s; border: 2px solid rgba(255,255,255,0.1); }
+        .size-btn:hover, .size-btn.active { border-color: #D4AF37; background: rgba(212,175,55,0.1); color: #D4AF37; }
+        .color-btn { width: 32px; height: 32px; border-radius: 50%; border: 3px solid transparent; transition: all 0.2s; cursor: pointer; }
+        .color-btn:hover, .color-btn.active { border-color: #fff; transform: scale(1.2); box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        .zone-card { transition: all 0.3s; cursor: pointer; }
+        .zone-card:hover, .zone-card.selected { border-color: #D4AF37; background: rgba(212,175,55,0.05); }
+        .gallery-thumb { transition: all 0.3s; border: 2px solid transparent; cursor: pointer; }
+        .gallery-thumb:hover, .gallery-thumb.active { border-color: #D4AF37; }
+        @media (max-width: 768px) {
+            .whatsapp-float { bottom: 80px; right: 20px; }
+            .whatsapp-btn { width: 50px; height: 50px; }
+        }
     </style>
 <base target="_blank">
 </head>
 <body>
+
     <!-- Loading Screen -->
     <div id="loader">
         <div class="loader-ring mb-6"></div>
         <h2 class="font-playfair text-2xl text-haiti-gold tracking-widest">LUXE HAITI</h2>
-        <p class="text-gray-400 mt-2 text-sm">Chargement de l'experience 3D...</p>
+        <p class="text-gray-400 mt-2 text-sm">Chargement...</p>
     </div>
 
     <!-- Toast -->
     <div id="toast" class="toast fixed top-24 right-6 z-50 glass-dark px-6 py-4 rounded-xl flex items-center gap-3">
         <i class="fas fa-check-circle text-haiti-gold text-xl"></i>
         <div>
-            <p class="font-semibold text-sm">Ajoute au panier!</p>
-            <p class="text-xs text-gray-400" id="toast-message">Produit ajoute avec succes</p>
+            <p class="font-semibold text-sm" id="toast-title">Ajoute!</p>
+            <p class="text-xs text-gray-400" id="toast-message">Produit ajoute</p>
         </div>
+    </div>
+
+    <!-- Recently Bought Popup -->
+    <div id="recent-popup" class="recent-popup fixed bottom-24 left-6 z-40 glass-dark rounded-xl p-4 max-w-xs">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center"><i class="fas fa-shopping-bag text-green-500 text-sm"></i></div>
+            <div><p class="text-xs text-gray-400">Il y a <span id="recent-time">2</span> min</p><p class="text-sm font-medium" id="recent-text">Jean a achete un produit</p></div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <div class="whatsapp-pulse"></div>
+        <a href="https://wa.me/50938954747?text=Bonjour%20Luxe%20Haiti%2C%20je%20suis%20interesse%20par%20vos%20produits" target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp text-white text-2xl"></i>
+            <span class="whatsapp-tooltip">Commander sur WhatsApp</span>
+        </a>
     </div>
 
     <!-- Navigation -->
@@ -124,10 +166,13 @@
                 <div class="hidden md:flex items-center gap-8">
                     <a href="#accueil" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Accueil</a>
                     <a href="#produits" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Produits</a>
-                    <a href="#apropos" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">A Propos</a>
+                    <a href="#livraison" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Livraison</a>
                     <a href="#contact" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
                 </div>
                 <div class="flex items-center gap-4">
+                    <a href="https://wa.me/50938954747" target="_blank" class="hidden md:flex items-center gap-2 text-sm text-green-400 hover:text-green-300 transition-colors">
+                        <i class="fab fa-whatsapp"></i><span>509 3895-4747</span>
+                    </a>
                     <button onclick="toggleCart()" class="relative p-2 hover:bg-white/10 rounded-full transition-colors">
                         <i class="fas fa-shopping-bag text-xl text-haiti-gold"></i>
                         <span id="cart-count" class="cart-badge">0</span>
@@ -145,8 +190,9 @@
         <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 p-2"><i class="fas fa-times text-2xl text-white"></i></button>
         <a href="#accueil" onclick="toggleMobileMenu()" class="font-playfair text-3xl text-white hover:text-haiti-gold transition-colors">Accueil</a>
         <a href="#produits" onclick="toggleMobileMenu()" class="font-playfair text-3xl text-white hover:text-haiti-gold transition-colors">Produits</a>
-        <a href="#apropos" onclick="toggleMobileMenu()" class="font-playfair text-3xl text-white hover:text-haiti-gold transition-colors">A Propos</a>
+        <a href="#livraison" onclick="toggleMobileMenu()" class="font-playfair text-3xl text-white hover:text-haiti-gold transition-colors">Livraison</a>
         <a href="#contact" onclick="toggleMobileMenu()" class="font-playfair text-3xl text-white hover:text-haiti-gold transition-colors">Contact</a>
+        <a href="https://wa.me/50938954747" target="_blank" class="mt-4 bg-green-500 text-white px-8 py-3 rounded-full font-bold flex items-center gap-2"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
 
     <!-- Cart Sidebar -->
@@ -158,19 +204,13 @@
         </div>
         <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
         <div class="p-6 border-t border-white/10 space-y-4">
-            <div class="flex justify-between items-center">
-                <span class="text-gray-400">Sous-total</span>
-                <span id="cart-subtotal" class="font-bold text-xl">0 HTG</span>
-            </div>
-            <div class="flex justify-between items-center">
-                <span class="text-gray-400">Livraison</span>
-                <span class="text-haiti-gold">Gratuite</span>
-            </div>
-            <div class="border-t border-white/10 pt-4 flex justify-between items-center">
-                <span class="font-bold text-lg">Total</span>
-                <span id="cart-total" class="font-bold text-2xl text-haiti-gold">0 HTG</span>
-            </div>
-            <button onclick="openCheckout()" class="w-full magnetic-btn bg-haiti-gold text-haiti-dark font-bold py-4 rounded-xl hover:shadow-lg hover:shadow-haiti-gold/30 transition-all">Passer la Commande</button>
+            <div class="flex justify-between items-center"><span class="text-gray-400">Sous-total</span><span id="cart-subtotal" class="font-bold text-xl">0 HTG</span></div>
+            <div class="flex justify-between items-center"><span class="text-gray-400">Livraison</span><span id="cart-shipping" class="text-haiti-gold">Gratuite</span></div>
+            <div class="border-t border-white/10 pt-4 flex justify-between items-center"><span class="font-bold text-lg">Total</span><span id="cart-total" class="font-bold text-2xl text-haiti-gold">0 HTG</span></div>
+            <button onclick="openCheckout()" class="w-full magnetic-btn bg-green-500 text-white font-bold py-4 rounded-xl hover:shadow-lg hover:shadow-green-500/30 transition-all flex items-center justify-center gap-2">
+                <i class="fab fa-whatsapp text-xl"></i> Commander sur WhatsApp
+            </button>
+            <p class="text-xs text-gray-500 text-center">Vous serez redirige vers WhatsApp avec votre commande pre-remplie</p>
             <button onclick="toggleCart()" class="w-full py-3 text-gray-400 hover:text-white transition-colors text-sm">Continuer les achats</button>
         </div>
     </div>
@@ -181,67 +221,77 @@
         <div class="absolute inset-0 pointer-events-none overflow-hidden" id="particles"></div>
         <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
             <div class="animate-slide-in">
-                <p class="text-haiti-gold tracking-[0.3em] text-sm font-semibold mb-4 uppercase">Bienvenue a Delmas 31</p>
+                <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="text-xs text-gray-300">Ouvert aujourd'hui - Delmas 31</span>
+                </div>
+                <p class="text-haiti-gold tracking-[0.3em] text-sm font-semibold mb-4 uppercase">Boutique Officielle</p>
                 <h1 class="font-playfair text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 hero-text-3d leading-tight">
                     L'Elegance<br><span class="text-gradient">Haitienne</span>
                 </h1>
                 <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Decouvrez notre collection exclusive de snapbacks et sandales. Le style premium made in Haiti, livre directement a votre porte.
+                    Snapbacks premium & Sandales confortables. Livraison rapide a Delmas, Petion-Ville, Carrefour. Commandez sur WhatsApp !
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <a href="#produits" class="magnetic-btn bg-haiti-gold text-haiti-dark px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:shadow-haiti-gold/40 transition-all inline-flex items-center gap-2">
-                        <span>Explorer la Collection</span><i class="fas fa-arrow-right"></i>
+                        <span>Voir les Produits</span><i class="fas fa-arrow-right"></i>
                     </a>
-                    <a href="#apropos" class="glass px-8 py-4 rounded-full font-semibold text-white hover:bg-white/10 transition-all inline-flex items-center gap-2">
-                        <i class="fas fa-play-circle"></i><span>Notre Histoire</span>
+                    <a href="https://wa.me/50938954747?text=Bonjour%20Luxe%20Haiti%2C%20je%20veux%20passer%20commande" target="_blank" class="glass px-8 py-4 rounded-full font-semibold text-white hover:bg-green-500/20 hover:border-green-500/50 transition-all inline-flex items-center gap-2 border border-white/10">
+                        <i class="fab fa-whatsapp text-green-400"></i><span>Commander par WhatsApp</span>
                     </a>
                 </div>
             </div>
-            <div class="mt-20 grid grid-cols-3 gap-8 max-w-lg mx-auto">
-                <div class="text-center">
-                    <div class="font-playfair text-3xl md:text-4xl font-bold text-haiti-gold">500+</div>
-                    <div class="text-gray-400 text-xs mt-1">Clients Satisfaits</div>
-                </div>
-                <div class="text-center">
-                    <div class="font-playfair text-3xl md:text-4xl font-bold text-haiti-gold">100%</div>
-                    <div class="text-gray-400 text-xs mt-1">Produits Locaux</div>
-                </div>
-                <div class="text-center">
-                    <div class="font-playfair text-3xl md:text-4xl font-bold text-haiti-gold">24h</div>
-                    <div class="text-gray-400 text-xs mt-1">Livraison Express</div>
-                </div>
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
+                <div class="text-center glass rounded-xl p-4"><div class="font-playfair text-2xl md:text-3xl font-bold text-haiti-gold">500+</div><div class="text-gray-400 text-xs mt-1">Clients</div></div>
+                <div class="text-center glass rounded-xl p-4"><div class="font-playfair text-2xl md:text-3xl font-bold text-haiti-gold">24h</div><div class="text-gray-400 text-xs mt-1">Livraison</div></div>
+                <div class="text-center glass rounded-xl p-4"><div class="font-playfair text-2xl md:text-3xl font-bold text-haiti-gold">100%</div><div class="text-gray-400 text-xs mt-1">Local</div></div>
+                <div class="text-center glass rounded-xl p-4"><div class="font-playfair text-2xl md:text-3xl font-bold text-haiti-gold">4.9★</div><div class="text-gray-400 text-xs mt-1">Avis</div></div>
             </div>
         </div>
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <div class="w-6 h-10 border-2 border-haiti-gold rounded-full flex justify-center pt-2">
-                <div class="w-1 h-2 bg-haiti-gold rounded-full animate-pulse"></div>
-            </div>
+            <div class="w-6 h-10 border-2 border-haiti-gold rounded-full flex justify-center pt-2"><div class="w-1 h-2 bg-haiti-gold rounded-full animate-pulse"></div></div>
         </div>
     </section>
+
+    <!-- Trust Marquee -->
+    <div class="py-6 overflow-hidden border-y border-white/5">
+        <div class="flex marquee-track whitespace-nowrap">
+            <div class="flex items-center gap-12 px-6">
+                <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-shield-alt text-haiti-gold"></i> Paiement Securise</span>
+                <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-truck text-haiti-gold"></i> Livraison Rapide</span>
+                <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-undo text-haiti-gold"></i> Retour 7 Jours</span>
+                <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-check-circle text-haiti-gold"></i> Qualite Garantie</span>
+                <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-hand-holding-usd text-haiti-gold"></i> MonCash Accepte</span>
+                <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fab fa-whatsapp text-green-500"></i> WhatsApp Direct</span>
+            </div>
+            <div class="flex items-center gap-12 px-6">
+                <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-shield-alt text-haiti-gold"></i> Paiement Securise</span>
+                <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-truck text-haiti-gold"></i> Livraison Rapide</span>
+                <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-undo text-haiti-gold"></i> Retour 7 Jours</span>
+                <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-check-circle text-haiti-gold"></i> Qualite Garantie</span>
+                <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-hand-holding-usd text-haiti-gold"></i> MonCash Accepte</span>
+                <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fab fa-whatsapp text-green-500"></i> WhatsApp Direct</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Features -->
     <section class="py-20 px-6 relative">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="feature-box glass rounded-2xl p-8 text-center reveal">
-                <div class="feature-icon w-16 h-16 rounded-full bg-haiti-gold/20 flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-gem text-2xl text-haiti-gold"></i>
-                </div>
+                <div class="feature-icon w-16 h-16 rounded-full bg-haiti-gold/20 flex items-center justify-center mx-auto mb-6"><i class="fas fa-gem text-2xl text-haiti-gold"></i></div>
                 <h3 class="font-playfair text-xl font-bold mb-3">Qualite Premium</h3>
-                <p class="text-gray-400 text-sm">Materiaux soigneusement selectionnes pour une durabilite exceptionnelle et un confort optimal.</p>
+                <p class="text-gray-400 text-sm">Materiaux soigneusement selectionnes. Broderie 3D, cuir veritable, finitions artisanales.</p>
             </div>
             <div class="feature-box glass rounded-2xl p-8 text-center reveal">
-                <div class="feature-icon w-16 h-16 rounded-full bg-haiti-red/20 flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-shipping-fast text-2xl text-haiti-red"></i>
-                </div>
-                <h3 class="font-playfair text-xl font-bold mb-3">Livraison Rapide</h3>
-                <p class="text-gray-400 text-sm">Service de livraison express dans tout Port-au-Prince et ses environs en 24 heures.</p>
+                <div class="feature-icon w-16 h-16 rounded-full bg-haiti-red/20 flex items-center justify-center mx-auto mb-6"><i class="fas fa-shipping-fast text-2xl text-haiti-red"></i></div>
+                <h3 class="font-playfair text-xl font-bold mb-3">Livraison Express</h3>
+                <p class="text-gray-400 text-sm">Delmas: 2h. Petion-Ville, Carrefour: 24h. Livreur avec numero de contact.</p>
             </div>
             <div class="feature-box glass rounded-2xl p-8 text-center reveal">
-                <div class="feature-icon w-16 h-16 rounded-full bg-haiti-blue/20 flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-hand-holding-heart text-2xl text-haiti-blue"></i>
-                </div>
-                <h3 class="font-playfair text-xl font-bold mb-3">Satisfaction Garantie</h3>
-                <p class="text-gray-400 text-sm">Politique de retour flexible. Votre satisfaction est notre priorite absolue.</p>
+                <div class="feature-icon w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-6"><i class="fab fa-whatsapp text-2xl text-green-500"></i></div>
+                <h3 class="font-playfair text-xl font-bold mb-3">Commande WhatsApp</h3>
+                <p class="text-gray-400 text-sm">Pas besoin de carte bancaire. Commandez directement sur WhatsApp au 509 3895-4747.</p>
             </div>
         </div>
     </section>
@@ -252,7 +302,8 @@
             <div class="text-center mb-16 reveal">
                 <p class="text-haiti-gold tracking-widest text-sm font-semibold mb-4 uppercase">Notre Collection</p>
                 <h2 class="font-playfair text-4xl md:text-5xl font-bold text-white mb-6">Produits Exclusifs</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-haiti-gold to-transparent mx-auto"></div>
+                <div class="w-24 h-1 bg-gradient-to-r from-haiti-gold to-transparent mx-auto mb-4"></div>
+                <p class="text-gray-400 max-w-xl mx-auto">Snapbacks ajustables et sandales confortables. Cliquez sur un produit pour voir les details et commander.</p>
             </div>
             <div class="flex justify-center gap-4 mb-12 reveal">
                 <button onclick="filterProducts('all')" class="filter-btn active px-6 py-2 rounded-full border border-haiti-gold/30 text-sm font-medium transition-all hover:bg-haiti-gold hover:text-haiti-dark" data-filter="all">Tous</button>
@@ -263,96 +314,45 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="apropos" class="py-20 px-6 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-haiti-gold/5 to-transparent"></div>
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="reveal">
-                    <p class="text-haiti-gold tracking-widest text-sm font-semibold mb-4 uppercase">Notre Histoire</p>
-                    <h2 class="font-playfair text-4xl md:text-5xl font-bold text-white mb-6">Luxe Haiti,<br>Fiertee Nationale</h2>
-                    <p class="text-gray-400 leading-relaxed mb-6">
-                        Fonde au coeur de Delmas 31, Luxe Haiti represente l'excellence de la mode haitienne. Notre mission est de creer des produits qui refletent la richesse culturelle et le talent creatif de notre nation, tout en offrant une qualite internationale.
-                    </p>
-                    <p class="text-gray-400 leading-relaxed mb-8">
-                        Chaque snapback et chaque paire de sandales est confectionnee avec soin, utilisant des materiaux premium et des techniques artisanales transmises de generation en generation.
-                    </p>
-                    <div class="flex gap-8">
-                        <div>
-                            <div class="font-playfair text-3xl font-bold text-haiti-gold">2020</div>
-                            <div class="text-gray-400 text-sm">Annee de Fondation</div>
-                        </div>
-                        <div>
-                            <div class="font-playfair text-3xl font-bold text-haiti-gold">Delmas 31</div>
-                            <div class="text-gray-400 text-sm">Notre Quartier</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative reveal">
-                    <div class="absolute inset-0 bg-gradient-to-br from-haiti-gold/20 to-haiti-red/20 rounded-3xl transform rotate-3"></div>
-                    <div class="glass rounded-3xl p-8 relative transform -rotate-2 hover:rotate-0 transition-transform duration-500">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="space-y-4">
-                                <div class="h-32 rounded-2xl bg-gradient-to-br from-haiti-gold/30 to-haiti-gold/10 flex items-center justify-center">
-                                    <i class="fas fa-hat-cowboy text-4xl text-haiti-gold"></i>
-                                </div>
-                                <div class="h-48 rounded-2xl bg-gradient-to-br from-haiti-red/30 to-haiti-red/10 flex items-center justify-center">
-                                    <i class="fas fa-shoe-prints text-4xl text-haiti-red"></i>
-                                </div>
-                            </div>
-                            <div class="space-y-4 mt-8">
-                                <div class="h-48 rounded-2xl bg-gradient-to-br from-haiti-blue/30 to-haiti-blue/10 flex items-center justify-center">
-                                    <i class="fas fa-flag text-4xl text-haiti-blue"></i>
-                                </div>
-                                <div class="h-32 rounded-2xl bg-gradient-to-br from-haiti-gold/30 to-haiti-gold/10 flex items-center justify-center">
-                                    <i class="fas fa-heart text-4xl text-haiti-gold"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="py-20 px-6">
+    <!-- Delivery Section -->
+    <section id="livraison" class="py-20 px-6 relative">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 reveal">
-                <p class="text-haiti-gold tracking-widest text-sm font-semibold mb-4 uppercase">Temoignages</p>
-                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-white">Ce que Disent Nos Clients</h2>
+                <p class="text-haiti-gold tracking-widest text-sm font-semibold mb-4 uppercase">Livraison</p>
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-white mb-6">Zones & Tarifs</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-haiti-gold to-transparent mx-auto"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="testimonial-card glass rounded-2xl p-8 reveal">
-                    <div class="flex gap-1 mb-4">
-                        <i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+                <div class="zone-card glass rounded-2xl p-6 border border-white/10">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center"><i class="fas fa-map-marker-alt text-green-500"></i></div>
+                        <span class="text-green-400 font-bold">GRATUIT</span>
                     </div>
-                    <p class="text-gray-300 mb-6 italic">"La qualite des snapbacks est incroyable! Le design est unique et la livraison a Delmas a ete super rapide."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-haiti-gold to-haiti-red flex items-center justify-center font-bold text-haiti-dark">JM</div>
-                        <div><div class="font-semibold">Jean Michel</div><div class="text-gray-400 text-sm">Petion-Ville</div></div>
-                    </div>
+                    <h3 class="font-playfair text-xl font-bold mb-2">Delmas 31 & Environs</h3>
+                    <p class="text-gray-400 text-sm mb-4">Livraison gratuite dans un rayon de 2km de notre boutique.</p>
+                    <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-clock text-haiti-gold"></i><span>2-4 heures</span></div>
                 </div>
-                <div class="testimonial-card glass rounded-2xl p-8 reveal">
-                    <div class="flex gap-1 mb-4">
-                        <i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i>
+                <div class="zone-card glass rounded-2xl p-6 border border-white/10">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 rounded-full bg-haiti-gold/20 flex items-center justify-center"><i class="fas fa-map-marker-alt text-haiti-gold"></i></div>
+                        <span class="text-haiti-gold font-bold">200 HTG</span>
                     </div>
-                    <p class="text-gray-300 mb-6 italic">"Les sandales sont confortables et stylies. Je recommande vivement Luxe Haiti a tous mes amis!"</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-haiti-blue to-haiti-gold flex items-center justify-center font-bold text-white">MP</div>
-                        <div><div class="font-semibold">Marie Pierre</div><div class="text-gray-400 text-sm">Carrefour</div></div>
-                    </div>
+                    <h3 class="font-playfair text-xl font-bold mb-2">Petion-Ville, Tabarre</h3>
+                    <p class="text-gray-400 text-sm mb-4">Livraison standard avec suivi par WhatsApp.</p>
+                    <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-clock text-haiti-gold"></i><span>24 heures</span></div>
                 </div>
-                <div class="testimonial-card glass rounded-2xl p-8 reveal">
-                    <div class="flex gap-1 mb-4">
-                        <i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i>
+                <div class="zone-card glass rounded-2xl p-6 border border-white/10">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 rounded-full bg-haiti-blue/20 flex items-center justify-center"><i class="fas fa-map-marker-alt text-haiti-blue"></i></div>
+                        <span class="text-haiti-blue font-bold">300 HTG</span>
                     </div>
-                    <p class="text-gray-300 mb-6 italic">"Service client exceptionnel. Le produit correspond parfaitement a la description. Fiertee haitienne!"</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-haiti-red to-haiti-blue flex items-center justify-center font-bold text-white">RJ</div>
-                        <div><div class="font-semibold">Robert Joseph</div><div class="text-gray-400 text-sm">Delmas</div></div>
-                    </div>
+                    <h3 class="font-playfair text-xl font-bold mb-2">Carrefour, Cite Soleil</h3>
+                    <p class="text-gray-400 text-sm mb-4">Livraison express disponible sur demande.</p>
+                    <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-clock text-haiti-gold"></i><span>24-48 heures</span></div>
                 </div>
+            </div>
+            <div class="mt-8 text-center reveal">
+                <p class="text-gray-400 text-sm">Autres zones? <a href="https://wa.me/50938954747?text=Bonjour%2C%20je%20voudrais%20connaitre%20les%20frais%20de%20livraison%20pour%20ma%20zone" target="_blank" class="text-haiti-gold hover:underline">Contactez-nous sur WhatsApp</a></p>
             </div>
         </div>
     </section>
@@ -363,46 +363,41 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div class="reveal">
                     <p class="text-haiti-gold tracking-widest text-sm font-semibold mb-4 uppercase">Contactez-Nous</p>
-                    <h2 class="font-playfair text-4xl md:text-5xl font-bold text-white mb-6">Visitons-Nous</h2>
-                    <p class="text-gray-400 mb-8">Rendez-nous visite a Delmas 31 ou contactez-nous directement. Nous sommes la pour vous servir!</p>
+                    <h2 class="font-playfair text-4xl md:text-5xl font-bold text-white mb-6">Commandez Directement</h2>
+                    <p class="text-gray-400 mb-8">Le plus rapide? Envoyez-nous un message WhatsApp. On repond en moins de 5 minutes!</p>
                     <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center"><i class="fab fa-whatsapp text-green-500 text-xl"></i></div>
+                            <div><div class="font-semibold">WhatsApp (Rapide)</div><a href="https://wa.me/50938954747" target="_blank" class="text-green-400 hover:underline">+509 3895-4747</a></div>
+                        </div>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full bg-haiti-gold/20 flex items-center justify-center"><i class="fas fa-map-marker-alt text-haiti-gold"></i></div>
                             <div><div class="font-semibold">Adresse</div><div class="text-gray-400">Delmas 31, Port-au-Prince, Haiti</div></div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-haiti-gold/20 flex items-center justify-center"><i class="fas fa-phone text-haiti-gold"></i></div>
-                            <div><div class="font-semibold">Telephone</div><div class="text-gray-400">+509 3895 4747</div></div>
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full bg-haiti-gold/20 flex items-center justify-center"><i class="fas fa-clock text-haiti-gold"></i></div>
                             <div><div class="font-semibold">Horaires</div><div class="text-gray-400">Lun - Sam: 8h00 - 18h00</div></div>
                         </div>
                     </div>
-                    <div class="mt-8 flex gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-haiti-gold hover:text-haiti-dark transition-all"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-haiti-gold hover:text-haiti-dark transition-all"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-haiti-gold hover:text-haiti-dark transition-all"><i class="fab fa-facebook-f"></i></a>
+                    <div class="mt-8">
+                        <a href="https://wa.me/50938954747?text=Bonjour%20Luxe%20Haiti%2C%20je%20suis%20interesse%20par%20vos%20produits" target="_blank" class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:shadow-lg hover:shadow-green-500/30">
+                            <i class="fab fa-whatsapp text-2xl"></i><span>Envoyer un Message WhatsApp</span>
+                        </a>
                     </div>
                 </div>
                 <div class="glass rounded-3xl p-8 reveal">
+                    <h3 class="font-playfair text-2xl font-bold mb-6">Envoyez-nous un Message</h3>
                     <form id="contact-form" onsubmit="handleContact(event)">
-                        <div class="space-y-6">
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Nom Complet</label>
-                                <input type="text" required class="custom-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-500" placeholder="Votre nom">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Email</label>
-                                <input type="email" required class="custom-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-500" placeholder="votre@email.com">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Message</label>
-                                <textarea required rows="4" class="custom-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-500 resize-none" placeholder="Comment pouvons-nous vous aider?"></textarea>
-                            </div>
-                            <button type="submit" class="w-full magnetic-btn bg-haiti-gold text-haiti-dark font-bold py-4 rounded-xl hover:shadow-lg hover:shadow-haiti-gold/30 transition-all">Envoyer le Message</button>
+                        <div class="space-y-4">
+                            <div><label class="block text-sm font-medium mb-2">Nom Complet</label><input type="text" required class="custom-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-500" placeholder="Votre nom"></div>
+                            <div><label class="block text-sm font-medium mb-2">Telephone WhatsApp</label><input type="tel" required class="custom-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-500" placeholder="+509 XXXX XXXX"></div>
+                            <div><label class="block text-sm font-medium mb-2">Message</label><textarea required rows="4" class="custom-input w-full px-4 py-3 rounded-xl text-white placeholder-gray-500 resize-none" placeholder="Quel produit vous interesse?"></textarea></div>
+                            <button type="submit" class="w-full magnetic-btn bg-haiti-gold text-haiti-dark font-bold py-4 rounded-xl hover:shadow-lg hover:shadow-haiti-gold/30 transition-all">Envoyer</button>
                         </div>
                     </form>
+                    <div class="mt-6 p-4 bg-green-500/10 rounded-xl border border-green-500/20">
+                        <p class="text-sm text-green-400 flex items-center gap-2"><i class="fab fa-whatsapp"></i><span>Plus rapide? <a href="https://wa.me/50938954747" target="_blank" class="underline">Cliquez ici pour WhatsApp</a></span></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -414,34 +409,30 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div>
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-haiti-gold to-yellow-600 flex items-center justify-center">
-                            <span class="font-playfair font-bold text-haiti-dark text-lg">L</span>
-                        </div>
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-haiti-gold to-yellow-600 flex items-center justify-center"><span class="font-playfair font-bold text-haiti-dark text-lg">L</span></div>
                         <div><h3 class="font-playfair font-bold text-white">LUXE HAITI</h3><p class="text-xs text-haiti-gold">DELMAS 31</p></div>
                     </div>
-                    <p class="text-gray-400 text-sm">L'elegance haitienne a votre portee. Qualite premium, style unique.</p>
+                    <p class="text-gray-400 text-sm">Snapbacks & Sandales premium. Commandez sur WhatsApp au 509 3895-4747</p>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">Produits</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-haiti-gold transition-colors">Snapbacks</a></li>
-                        <li><a href="#" class="hover:text-haiti-gold transition-colors">Sandales</a></li>
+                        <li><a href="#produits" onclick="filterProducts('snapback')" class="hover:text-haiti-gold transition-colors">Snapbacks</a></li>
+                        <li><a href="#produits" onclick="filterProducts('sandale')" class="hover:text-haiti-gold transition-colors">Sandales</a></li>
                         <li><a href="#" class="hover:text-haiti-gold transition-colors">Nouveautes</a></li>
-                        <li><a href="#" class="hover:text-haiti-gold transition-colors">Best-sellers</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">Service Client</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-haiti-gold transition-colors">Livraison</a></li>
-                        <li><a href="#" class="hover:text-haiti-gold transition-colors">Retours</a></li>
-                        <li><a href="#" class="hover:text-haiti-gold transition-colors">FAQ</a></li>
-                        <li><a href="#" class="hover:text-haiti-gold transition-colors">Contact</a></li>
+                        <li><a href="#livraison" class="hover:text-haiti-gold transition-colors">Livraison & Zones</a></li>
+                        <li><a href="#" class="hover:text-haiti-gold transition-colors">Retours 7 jours</a></li>
+                        <li><a href="https://wa.me/50938954747" target="_blank" class="hover:text-green-400 transition-colors">WhatsApp Direct</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">Newsletter</h4>
-                    <p class="text-gray-400 text-sm mb-4">Recevez nos offres exclusives</p>
+                    <p class="text-gray-400 text-sm mb-4">Recevez nos nouveautes</p>
                     <div class="flex">
                         <input type="email" class="custom-input flex-1 px-4 py-2 rounded-l-xl text-white placeholder-gray-500 text-sm" placeholder="Votre email">
                         <button class="bg-white/10 px-4 py-2 rounded-r-xl hover:bg-haiti-gold hover:text-haiti-dark transition-all"><i class="fas fa-paper-plane"></i></button>
@@ -450,118 +441,39 @@
             </div>
             <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-gray-400 text-sm">© 2026 Luxe Haiti. Tous droits reserves.</p>
-                <div class="flex gap-6 text-gray-400 text-sm">
-                    <a href="#" class="hover:text-white transition-colors">Confidentialite</a>
-                    <a href="#" class="hover:text-white transition-colors">Conditions</a>
-                    <a href="#" class="hover:text-white transition-colors">Cookies</a>
+                <div class="flex items-center gap-4">
+                    <a href="https://wa.me/50938954747" target="_blank" class="text-green-400 hover:text-green-300 text-sm flex items-center gap-2"><i class="fab fa-whatsapp"></i> 509 3895-4747</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Checkout Modal -->
-    <div id="checkout-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-black/80" onclick="closeCheckout()"></div>
-        <div class="modal-content glass-dark rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80" onclick="closeProductModal()"></div>
+        <div class="modal-content glass-dark rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative">
             <div class="p-8">
-                <div class="flex items-center justify-between mb-8">
-                    <h2 class="font-playfair text-3xl font-bold text-haiti-gold">Finaliser la Commande</h2>
-                    <button onclick="closeCheckout()" class="p-2 hover:bg-white/10 rounded-full transition-colors"><i class="fas fa-times text-xl text-white"></i></button>
-                </div>
-                <div class="flex justify-between mb-8">
-                    <div class="flex flex-col items-center">
-                        <div id="step-1-indicator" class="progress-step active w-10 h-10 rounded-full bg-haiti-gold flex items-center justify-center text-haiti-dark font-bold">1</div>
-                        <span class="text-xs mt-2 text-haiti-gold">Livraison</span>
-                    </div>
-                    <div class="flex-1 flex items-center px-4">
-                        <div class="h-1 w-full bg-white/10 rounded-full"><div id="progress-bar" class="h-full bg-haiti-gold rounded-full transition-all duration-500" style="width: 33%"></div></div>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div id="step-2-indicator" class="progress-step w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white font-bold">2</div>
-                        <span class="text-xs mt-2 text-gray-400">Paiement</span>
-                    </div>
-                    <div class="flex-1 flex items-center px-4">
-                        <div class="h-1 w-full bg-white/10 rounded-full"><div id="progress-bar-2" class="h-full bg-haiti-gold rounded-full transition-all duration-500" style="width: 0%"></div></div>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div id="step-3-indicator" class="progress-step w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white font-bold">3</div>
-                        <span class="text-xs mt-2 text-gray-400">Confirmation</span>
-                    </div>
-                </div>
-                <div id="checkout-step-1">
-                    <form onsubmit="goToStep2(event)">
-                        <div class="space-y-4">
-                            <div class="grid grid-cols-2 gap-4">
-                                <div><label class="block text-sm font-medium mb-2">Prenom</label><input type="text" required class="custom-input w-full px-4 py-3 rounded-xl text-white" placeholder="Prenom"></div>
-                                <div><label class="block text-sm font-medium mb-2">Nom</label><input type="text" required class="custom-input w-full px-4 py-3 rounded-xl text-white" placeholder="Nom"></div>
-                            </div>
-                            <div><label class="block text-sm font-medium mb-2">Telephone</label><input type="tel" required class="custom-input w-full px-4 py-3 rounded-xl text-white" placeholder="+509 XXXX XXXX"></div>
-                            <div><label class="block text-sm font-medium mb-2">Adresse de Livraison</label><textarea required rows="2" class="custom-input w-full px-4 py-3 rounded-xl text-white resize-none" placeholder="Rue, Quartier, Commune"></textarea></div>
-                            <div><label class="block text-sm font-medium mb-2">Instructions (optionnel)</label><input type="text" class="custom-input w-full px-4 py-3 rounded-xl text-white" placeholder="Code d'acces, etage, etc."></div>
-                        </div>
-                        <div class="mt-8 flex justify-between items-center">
-                            <span class="text-gray-400">Total: <span id="checkout-total" class="text-haiti-gold font-bold text-xl">0 HTG</span></span>
-                            <button type="submit" class="magnetic-btn bg-haiti-gold text-haiti-dark px-8 py-3 rounded-xl font-bold hover:shadow-lg hover:shadow-haiti-gold/30 transition-all">Continuer <i class="fas fa-arrow-right ml-2"></i></button>
-                        </div>
-                    </form>
-                </div>
-                <div id="checkout-step-2" class="hidden">
-                    <form onsubmit="goToStep3(event)">
-                        <div class="space-y-4">
-                            <div class="glass rounded-xl p-4 border border-haiti-gold/30">
-                                <div class="flex items-center gap-3">
-                                    <input type="radio" name="payment" value="cod" checked class="custom-checkbox" id="cod">
-                                    <label for="cod" class="flex-1 cursor-pointer"><div class="font-semibold">Paiement a la Livraison</div><div class="text-gray-400 text-sm">Payez en especes a la reception</div></label>
-                                    <i class="fas fa-money-bill-wave text-haiti-gold text-xl"></i>
-                                </div>
-                            </div>
-                            <div class="glass rounded-xl p-4 border border-white/10 opacity-50">
-                                <div class="flex items-center gap-3">
-                                    <input type="radio" name="payment" value="moncash" class="custom-checkbox" id="moncash" disabled>
-                                    <label for="moncash" class="flex-1 cursor-pointer"><div class="font-semibold">MonCash</div><div class="text-gray-400 text-sm">Bientot disponible</div></label>
-                                    <i class="fas fa-mobile-alt text-gray-500 text-xl"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-8 flex justify-between">
-                            <button type="button" onclick="goToStep1()" class="px-6 py-3 text-gray-400 hover:text-white transition-colors"><i class="fas fa-arrow-left mr-2"></i> Retour</button>
-                            <button type="submit" class="magnetic-btn bg-haiti-gold text-haiti-dark px-8 py-3 rounded-xl font-bold hover:shadow-lg hover:shadow-haiti-gold/30 transition-all">Confirmer <i class="fas fa-check ml-2"></i></button>
-                        </div>
-                    </form>
-                </div>
-                <div id="checkout-step-3" class="hidden text-center">
-                    <div class="success-icon w-20 h-20 rounded-full bg-haiti-gold/20 flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-check text-4xl text-haiti-gold"></i>
-                    </div>
-                    <h3 class="font-playfair text-2xl font-bold text-white mb-4">Commande Confirmee!</h3>
-                    <p class="text-gray-400 mb-6">Merci pour votre commande. Nous vous contacterons bientot pour confirmer la livraison.</p>
-                    <div class="glass rounded-xl p-4 mb-6 text-left">
-                        <div class="flex justify-between mb-2">
-                            <span class="text-gray-400">Numero de commande</span>
-                            <span class="font-mono text-haiti-gold">#LUX-<span id="order-number"></span></span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-400">Total</span>
-                            <span id="confirm-total" class="font-bold text-white"></span>
-                        </div>
-                    </div>
-                    <button onclick="closeCheckout(); clearCart();" class="magnetic-btn bg-haiti-gold text-haiti-dark px-8 py-3 rounded-xl font-bold hover:shadow-lg hover:shadow-haiti-gold/30 transition-all">Retour a la Boutique</button>
-                </div>
+                <button onclick="closeProductModal()" class="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full transition-colors z-10"><i class="fas fa-times text-xl text-white"></i></button>
+                <div id="product-detail-content" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
             </div>
         </div>
     </div>
 
     <script>
+        // Products Data
         const products = [
-            { id: 1, name: "Snapback Classic Noir", category: "snapback", price: 2500, image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=400&fit=crop", description: "Casquette snapback premium en coton avec broderie 3D. Ajustable, style urbain elegant.", badge: "Best-seller" },
-            { id: 2, name: "Snapback Drapeau Haiti", category: "snapback", price: 3000, image: "https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=400&h=400&fit=crop", description: "Edition speciale avec les couleurs du drapeau haitien. Fiertee nationale.", badge: "Nouveau" },
-            { id: 3, name: "Snapback Or & Noir", category: "snapback", price: 3500, image: "https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=400&h=400&fit=crop", description: "Design luxe avec accents dores. Pour ceux qui aiment se demarquer.", badge: "Premium" },
-            { id: 4, name: "Sandales Classiques", category: "sandale", price: 1500, image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=400&h=400&fit=crop", description: "Sandales confortables en cuir veritable. Parfaites pour le quotidien.", badge: "Best-seller" },
-            { id: 5, name: "Sandales Premium", category: "sandale", price: 2500, image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=400&fit=crop", description: "Sandales haut de gamme avec semelle ergonomique et finitions luxe.", badge: "Premium" },
-            { id: 6, name: "Sandales Sport", category: "sandale", price: 2000, image: "https://images.unsplash.com/photo-1562183241-b937e95585b6?w=400&h=400&fit=crop", description: "Style sportif avec bandes reglables. Confort maximal toute la journee.", badge: "Nouveau" }
+            { id: 1, name: "Snapback Classic Noir", category: "snapback", price: 2500, image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=400&fit=crop", description: "Casquette snapback premium en coton avec broderie 3D. Ajustable (55-60cm), style urbain elegant. Tissu respirant, parfait pour le climat tropical.", badge: "Best-seller", stock: 12, soldCount: 89, colors: [{name:"Noir",hex:"#1a1a1a"},{name:"Blanc",hex:"#f5f5f5"},{name:"Rouge",hex:"#CE1126"}], sizes: ["Ajustable"], features: ["Broderie 3D","Coton premium","Ajustable","Lavable"] },
+            { id: 2, name: "Snapback Drapeau Haiti", category: "snapback", price: 3000, image: "https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=400&h=400&fit=crop", description: "Edition speciale avec les couleurs du drapeau haitien. Fiertee nationale. Broderie haute qualite, ne decolore pas au soleil.", badge: "Nouveau", stock: 8, soldCount: 34, colors: [{name:"Drapeau",hex:"#00209F"}], sizes: ["Ajustable"], features: ["Couleurs drapeau","Broderie resistante","Ajustable","Edition limitee"] },
+            { id: 3, name: "Snapback Or & Noir", category: "snapback", price: 3500, image: "https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=400&h=400&fit=crop", description: "Design luxe avec accents dores. Pour ceux qui aiment se demarquer. Finitions haut de gamme, logo metal.", badge: "Premium", stock: 5, soldCount: 56, colors: [{name:"Or/Noir",hex:"#D4AF37"}], sizes: ["Ajustable"], features: ["Accents dores","Logo metal","Premium","Ajustable"] },
+            { id: 4, name: "Sandales Classiques", category: "sandale", price: 1500, image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=400&h=400&fit=crop", description: "Sandales confortables en simili-cuir. Parfaites pour le quotidien. Semelle antiderapante, ideal pour les rues de Port-au-Prince.", badge: "Best-seller", stock: 20, soldCount: 156, colors: [{name:"Marron",hex:"#8B4513"},{name:"Noir",hex:"#1a1a1a"}], sizes: ["38","39","40","41","42","43","44"], features: ["Simili-cuir","Semelle antiderapante","Confortable","Durable"] },
+            { id: 5, name: "Sandales Premium", category: "sandale", price: 2500, image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=400&fit=crop", description: "Sandales haut de gamme avec semelle ergonomique et finitions luxe. Cuir veritable, confort maximal toute la journee.", badge: "Premium", stock: 15, soldCount: 78, colors: [{name:"Noir",hex:"#1a1a1a"},{name:"Marron",hex:"#8B4513"}], sizes: ["38","39","40","41","42","43","44","45"], features: ["Cuir veritable","Semelle ergonomique","Premium","Durable"] },
+            { id: 6, name: "Sandales Sport", category: "sandale", price: 2000, image: "https://images.unsplash.com/photo-1562183241-b937e95585b6?w=400&h=400&fit=crop", description: "Style sportif avec bandes reglables. Confort maximal toute la journee. Ideal pour la marche et le sport leger.", badge: "Nouveau", stock: 18, soldCount: 45, colors: [{name:"Noir",hex:"#1a1a1a"},{name:"Bleu",hex:"#00209F"},{name:"Rouge",hex:"#CE1126"}], sizes: ["38","39","40","41","42","43","44"], features: ["Bandes reglables","Style sportif","Confortable","Respirant"] }
         ];
 
         let cart = [];
+        let selectedProduct = null;
+        let selectedColor = null;
+        let selectedSize = null;
 
         document.addEventListener('DOMContentLoaded', () => {
             initThreeJS();
@@ -569,9 +481,11 @@
             createParticles();
             setupScrollAnimations();
             setupNavbarScroll();
+            startRecentPopups();
             setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 2000);
         });
 
+        // Three.js Background
         function initThreeJS() {
             const canvas = document.getElementById('hero-canvas');
             const scene = new THREE.Scene();
@@ -600,7 +514,7 @@
                 mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
                 mesh.scale.setScalar(Math.random() * 0.5 + 0.3);
                 scene.add(mesh);
-                shapes.push({ mesh, speed: Math.random() * 0.01 + 0.005, rotationSpeed: { x: Math.random() * 0.02, y: Math.random() * 0.02, z: Math.random() * 0.02 } });
+                shapes.push({ mesh, rotationSpeed: { x: Math.random() * 0.02, y: Math.random() * 0.02, z: Math.random() * 0.02 } });
             }
 
             scene.add(new THREE.AmbientLight(0xffffff, 0.5));
@@ -616,7 +530,6 @@
                 shapes.forEach((shape, i) => {
                     shape.mesh.rotation.x += shape.rotationSpeed.x;
                     shape.mesh.rotation.y += shape.rotationSpeed.y;
-                    shape.mesh.rotation.z += shape.rotationSpeed.z;
                     shape.mesh.position.y += Math.sin(Date.now() * 0.001 + i) * 0.002;
                 });
                 camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
@@ -648,28 +561,35 @@
         function renderProducts(filter = 'all') {
             const grid = document.getElementById('products-grid');
             const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
-            grid.innerHTML = filtered.map((product, index) => `
+            grid.innerHTML = filtered.map((product) => `
                 <div class="product-card-3d neon-border glass rounded-2xl overflow-hidden reveal">
-                    <div class="relative h-64 overflow-hidden group">
+                    <div class="relative h-64 overflow-hidden group cursor-pointer" onclick="openProductModal(${product.id})">
                         <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                            <button onclick="addToCart(${product.id})" class="magnetic-btn w-full bg-haiti-gold text-haiti-dark py-3 rounded-xl font-bold hover:shadow-lg transition-all">
-                                <i class="fas fa-shopping-cart mr-2"></i> Ajouter au Panier
-                            </button>
+                            <span class="text-white font-semibold"><i class="fas fa-eye mr-2"></i>Voir details</span>
                         </div>
                         ${product.badge ? `<span class="absolute top-4 left-4 px-3 py-1 bg-haiti-gold text-haiti-dark text-xs font-bold rounded-full">${product.badge}</span>` : ''}
+                        ${product.stock < 10 ? `<span class="absolute top-4 right-4 px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full animate-pulse">${product.stock} restants</span>` : ''}
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-playfair text-xl font-bold text-white">${product.name}</h3>
+                            <h3 class="font-playfair text-xl font-bold text-white cursor-pointer hover:text-haiti-gold transition-colors" onclick="openProductModal(${product.id})">${product.name}</h3>
                             <span class="price-tag bg-haiti-gold text-haiti-dark px-3 py-1 rounded-lg font-bold text-sm">${product.price} HTG</span>
                         </div>
-                        <p class="text-gray-400 text-sm mb-4">${product.description}</p>
-                        <div class="flex items-center justify-between">
+                        <p class="text-gray-400 text-sm mb-3">${product.description.substring(0, 80)}...</p>
+                        <div class="flex items-center justify-between mb-4">
                             <div class="flex gap-1">
                                 <i class="fas fa-star text-haiti-gold text-xs"></i><i class="fas fa-star text-haiti-gold text-xs"></i><i class="fas fa-star text-haiti-gold text-xs"></i><i class="fas fa-star text-haiti-gold text-xs"></i><i class="fas fa-star text-haiti-gold text-xs"></i>
                             </div>
-                            <button onclick="addToCart(${product.id})" class="md:hidden magnetic-btn bg-haiti-gold text-haiti-dark px-4 py-2 rounded-lg font-bold text-sm"><i class="fas fa-plus"></i></button>
+                            <span class="text-xs text-gray-500">${product.soldCount} vendus</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openProductModal(${product.id})" class="flex-1 magnetic-btn bg-white/10 text-white py-2 rounded-lg font-medium hover:bg-white/20 transition-all text-sm">
+                                <i class="fas fa-eye mr-1"></i> Details
+                            </button>
+                            <button onclick="quickAddToCart(${product.id})" class="flex-1 magnetic-btn bg-haiti-gold text-haiti-dark py-2 rounded-lg font-bold hover:shadow-lg transition-all text-sm">
+                                <i class="fas fa-shopping-cart mr-1"></i> Ajouter
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -686,28 +606,129 @@
             renderProducts(category);
         }
 
-        function addToCart(productId) {
+        // Product Modal
+        function openProductModal(productId) {
             const product = products.find(p => p.id === productId);
-            const existingItem = cart.find(item => item.id === productId);
-            if (existingItem) { existingItem.quantity++; } else { cart.push({ ...product, quantity: 1 }); }
-            updateCart();
-            showToast(`${product.name} ajoute au panier`);
+            selectedProduct = product;
+            selectedColor = product.colors[0];
+            selectedSize = product.sizes[0];
+
+            const modal = document.getElementById('product-modal');
+            const content = document.getElementById('product-detail-content');
+
+            content.innerHTML = `
+                <div class="space-y-4">
+                    <div class="relative rounded-2xl overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-80 object-cover">
+                        ${product.badge ? `<span class="absolute top-4 left-4 px-3 py-1 bg-haiti-gold text-haiti-dark text-xs font-bold rounded-full">${product.badge}</span>` : ''}
+                    </div>
+                    <div class="flex gap-2">
+                        ${product.colors.map((c, i) => `<div class="color-btn ${i === 0 ? 'active' : ''}" style="background:${c.hex}" onclick="selectColor(${i}, this)" title="${c.name}"></div>`).join('')}
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h2 class="font-playfair text-3xl font-bold text-white">${product.name}</h2>
+                    <div class="flex items-center gap-4">
+                        <span class="text-3xl font-bold text-haiti-gold">${product.price} HTG</span>
+                        <span class="text-gray-400 line-through">${Math.round(product.price * 1.2)} HTG</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="flex gap-1"><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i><i class="fas fa-star text-haiti-gold"></i></div>
+                        <span class="text-sm text-gray-400">(${product.soldCount} vendus)</span>
+                    </div>
+                    <p class="text-gray-300">${product.description}</p>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Couleur: <span id="selected-color-name" class="text-haiti-gold">${product.colors[0].name}</span></label>
+                    </div>
+
+                    ${product.sizes.length > 1 ? `
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Taille</label>
+                        <div class="flex gap-2 flex-wrap">
+                            ${product.sizes.map((s, i) => `<button class="size-btn ${i === 0 ? 'active' : ''} px-4 py-2 rounded-lg text-sm font-medium" onclick="selectSize('${s}', this)">${s}</button>`).join('')}
+                        </div>
+                    </div>
+                    ` : '<p class="text-sm text-gray-400"><i class="fas fa-info-circle mr-1"></i>Taille unique ajustable</p>'}
+
+                    <div class="flex items-center gap-4 p-4 bg-green-500/10 rounded-xl border border-green-500/20">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <div>
+                            <p class="text-sm font-medium text-green-400">En stock</p>
+                            <p class="text-xs text-gray-400">${product.stock} disponibles - ${product.soldCount} vendus ce mois</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button onclick="addToCartFromModal()" class="flex-1 magnetic-btn bg-haiti-gold text-haiti-dark py-3 rounded-xl font-bold hover:shadow-lg transition-all">
+                            <i class="fas fa-shopping-cart mr-2"></i>Ajouter au Panier
+                        </button>
+                        <a href="https://wa.me/50938954747?text=${encodeURIComponent('Bonjour Luxe Haiti, je veux commander: ' + product.name + ' (' + selectedColor.name + ') a ' + product.price + ' HTG')}" target="_blank" class="flex-1 magnetic-btn bg-green-500 text-white py-3 rounded-xl font-bold hover:shadow-lg transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp"></i>Commander
+                        </a>
+                    </div>
+
+                    <div class="flex gap-2 pt-2">
+                        <button onclick="shareProduct('facebook', ${product.id})" class="share-btn w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 hover:bg-blue-600 hover:text-white"><i class="fab fa-facebook-f"></i></button>
+                        <button onclick="shareProduct('whatsapp', ${product.id})" class="share-btn w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 hover:bg-green-500 hover:text-white"><i class="fab fa-whatsapp"></i></button>
+                        <button onclick="shareProduct('copy', ${product.id})" class="share-btn w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-white/20"><i class="fas fa-link"></i></button>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        function removeFromCart(productId) { cart = cart.filter(item => item.id !== productId); updateCart(); }
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-        function updateQuantity(productId, change) {
-            const item = cart.find(item => item.id === productId);
-            if (item) { item.quantity += change; if (item.quantity <= 0) { removeFromCart(productId); } else { updateCart(); } }
+        function selectColor(index, el) {
+            selectedColor = selectedProduct.colors[index];
+            document.getElementById('selected-color-name').textContent = selectedColor.name;
+            document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function selectSize(size, el) {
+            selectedSize = size;
+            document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function addToCartFromModal() {
+            if (!selectedProduct) return;
+            const item = { ...selectedProduct, selectedColor: selectedColor, selectedSize: selectedSize, uniqueId: Date.now() };
+            cart.push(item);
+            updateCart();
+            showToast('Ajoute au panier!', selectedProduct.name + ' (' + selectedColor.name + ')');
+            closeProductModal();
+        }
+
+        function quickAddToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const item = { ...product, selectedColor: product.colors[0], selectedSize: product.sizes[0], uniqueId: Date.now() };
+            cart.push(item);
+            updateCart();
+            showToast('Ajoute au panier!', product.name);
+        }
+
+        function removeFromCart(uniqueId) {
+            cart = cart.filter(item => item.uniqueId !== uniqueId);
+            updateCart();
         }
 
         function updateCart() {
             const cartItems = document.getElementById('cart-items');
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const totalItems = cart.length;
+            const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+
             document.getElementById('cart-count').textContent = totalItems;
             document.getElementById('cart-subtotal').textContent = totalPrice + ' HTG';
             document.getElementById('cart-total').textContent = totalPrice + ' HTG';
+
             if (cart.length === 0) {
                 cartItems.innerHTML = `<div class="text-center py-12"><i class="fas fa-shopping-bag text-4xl text-gray-600 mb-4"></i><p class="text-gray-400">Votre panier est vide</p><a href="#produits" onclick="toggleCart()" class="text-haiti-gold hover:underline text-sm mt-2 inline-block">Continuer les achats</a></div>`;
             } else {
@@ -716,13 +737,9 @@
                         <img src="${item.image}" alt="${item.name}" class="w-20 h-20 rounded-lg object-cover">
                         <div class="flex-1">
                             <h4 class="font-semibold text-sm mb-1">${item.name}</h4>
+                            <p class="text-xs text-gray-400">${item.selectedColor.name}${item.selectedSize !== 'Ajustable' ? ' - Taille ' + item.selectedSize : ''}</p>
                             <p class="text-haiti-gold font-bold">${item.price} HTG</p>
-                            <div class="flex items-center gap-2 mt-2">
-                                <button onclick="updateQuantity(${item.id}, -1)" class="qty-btn w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs"><i class="fas fa-minus"></i></button>
-                                <span class="text-sm font-medium w-6 text-center">${item.quantity}</span>
-                                <button onclick="updateQuantity(${item.id}, 1)" class="qty-btn w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs"><i class="fas fa-plus"></i></button>
-                                <button onclick="removeFromCart(${item.id})" class="ml-auto text-gray-400 hover:text-red-500 transition-colors"><i class="fas fa-trash-alt text-xs"></i></button>
-                            </div>
+                            <button onclick="removeFromCart(${item.uniqueId})" class="mt-2 text-xs text-gray-400 hover:text-red-500 transition-colors"><i class="fas fa-trash-alt mr-1"></i>Retirer</button>
                         </div>
                     </div>
                 `).join('');
@@ -739,55 +756,53 @@
             document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
         }
 
-        function showToast(message) {
+        function showToast(title, message) {
             const toast = document.getElementById('toast');
+            document.getElementById('toast-title').textContent = title;
             document.getElementById('toast-message').textContent = message;
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
+        // WhatsApp Checkout - THE KEY FEATURE
         function openCheckout() {
-            if (cart.length === 0) { showToast('Votre panier est vide'); return; }
+            if (cart.length === 0) { showToast('Panier vide', 'Ajoutez des produits d'abord'); return; }
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            let message = '🔥 *NOUVELLE COMMANDE - LUXE HAITI* 🔥%0A%0A';
+            message += '*Client:* ' + (document.querySelector('input[type="text"]')?.value || 'Nouveau Client') + '%0A';
+            message += '*Telephone:* ' + (document.querySelector('input[type="tel"]')?.value || 'A confirmer') + '%0A%0A';
+            message += '*PRODUITS:*%0A';
+
+            cart.forEach((item, i) => {
+                message += (i+1) + '. *' + item.name + '*%0A';
+                message += '   Couleur: ' + item.selectedColor.name + '%0A';
+                if (item.selectedSize !== 'Ajustable') message += '   Taille: ' + item.selectedSize + '%0A';
+                message += '   Prix: ' + item.price + ' HTG%0A%0A';
+            });
+
+            message += '*TOTAL: ' + total + ' HTG* %0A%0A';
+            message += '*Livraison:* A confirmer%0A';
+            message += '*Adresse:* A confirmer%0A%0A';
+            message += 'Merci de confirmer ma commande! 🙏';
+
+            window.open('https://wa.me/50938954747?text=' + message, '_blank');
             toggleCart();
-            document.getElementById('checkout-modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            document.getElementById('checkout-total').textContent = total + ' HTG';
+            showToast('Redirection WhatsApp', 'Votre commande est prete a envoyer!');
         }
 
-        function closeCheckout() {
-            document.getElementById('checkout-modal').classList.remove('active');
-            document.body.style.overflow = '';
-            setTimeout(() => { goToStep1(); }, 300);
-        }
+        function shareProduct(platform, productId) {
+            const product = products.find(p => p.id === productId);
+            const url = window.location.href + '#produit-' + productId;
+            const text = 'Decouvre ce produit de Luxe Haiti: ' + product.name + ' a ' + product.price + ' HTG';
 
-        function goToStep1() {
-            document.getElementById('checkout-step-1').classList.remove('hidden');
-            document.getElementById('checkout-step-2').classList.add('hidden');
-            document.getElementById('checkout-step-3').classList.add('hidden');
-            document.getElementById('progress-bar').style.width = '33%';
-            document.getElementById('progress-bar-2').style.width = '0%';
-            document.getElementById('step-2-indicator').classList.remove('active');
-            document.getElementById('step-3-indicator').classList.remove('active');
-        }
-
-        function goToStep2(e) {
-            e.preventDefault();
-            document.getElementById('checkout-step-1').classList.add('hidden');
-            document.getElementById('checkout-step-2').classList.remove('hidden');
-            document.getElementById('progress-bar').style.width = '100%';
-            document.getElementById('step-2-indicator').classList.add('active');
-        }
-
-        function goToStep3(e) {
-            e.preventDefault();
-            document.getElementById('checkout-step-2').classList.add('hidden');
-            document.getElementById('checkout-step-3').classList.remove('hidden');
-            document.getElementById('progress-bar-2').style.width = '100%';
-            document.getElementById('step-3-indicator').classList.add('active');
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            document.getElementById('confirm-total').textContent = total + ' HTG';
-            document.getElementById('order-number').textContent = Math.random().toString(36).substr(2, 6).toUpperCase();
+            if (platform === 'facebook') {
+                window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank');
+            } else if (platform === 'whatsapp') {
+                window.open('https://wa.me/?text=' + encodeURIComponent(text + ' ' + url), '_blank');
+            } else if (platform === 'copy') {
+                navigator.clipboard.writeText(url).then(() => showToast('Lien copie!', 'Partagez avec vos amis'));
+            }
         }
 
         function toggleMobileMenu() {
@@ -806,7 +821,35 @@
             window.addEventListener('scroll', () => { if (window.scrollY > 50) navbar.classList.add('bg-haiti-dark/90'); else navbar.classList.remove('bg-haiti-dark/90'); });
         }
 
-        function handleContact(e) { e.preventDefault(); showToast('Message envoye avec succes!'); e.target.reset(); }
+        function handleContact(e) {
+            e.preventDefault();
+            const name = e.target.querySelector('input[type="text"]').value;
+            const phone = e.target.querySelector('input[type="tel"]').value;
+            const message = e.target.querySelector('textarea').value;
+            const whatsappMessage = 'Bonjour Luxe Haiti,%0A%0ANom: ' + name + '%0ATelephone: ' + phone + '%0A%0AMessage:%0A' + message;
+            window.open('https://wa.me/50938954747?text=' + encodeURIComponent(whatsappMessage), '_blank');
+            showToast('Redirection WhatsApp', 'Votre message est pret!');
+            e.target.reset();
+        }
+
+        // Recent Purchase Popups
+        function startRecentPopups() {
+            const names = ['Jean', 'Marie', 'Pierre', 'Sophie', 'Marc', 'Claire', 'Robert', 'Linda'];
+            const products = ['Snapback Classic', 'Sandales Premium', 'Snapback Drapeau', 'Sandales Classiques'];
+
+            setInterval(() => {
+                const popup = document.getElementById('recent-popup');
+                const name = names[Math.floor(Math.random() * names.length)];
+                const product = products[Math.floor(Math.random() * products.length)];
+                const time = Math.floor(Math.random() * 10) + 1;
+
+                document.getElementById('recent-time').textContent = time;
+                document.getElementById('recent-text').textContent = name + ' a achete ' + product;
+
+                popup.classList.add('show');
+                setTimeout(() => popup.classList.remove('show'), 4000);
+            }, 15000);
+        }
     </script>
 </body>
 </html>
