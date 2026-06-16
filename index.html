@@ -34,6 +34,9 @@
         }
     </script>
     <style>
+        img { image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; }
+        .product-image { object-fit: cover; object-position: center; }
+    
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
         ::-webkit-scrollbar { width: 8px; }
@@ -698,7 +701,7 @@
     <script>
         // Products Data
         const products = [
-            { id: 1, name: "Snapback Classic Noir", category: "snapback", price: 2500, originalPrice: 3000, image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=400&fit=crop", description: "Casquette snapback premium en coton avec broderie 3D. Ajustable 55-60cm, style urbain elegant. Tissu respirant, parfait pour le climat tropical.", badge: "Best-seller", stock: 12, soldCount: 89, colors: [{name:"Noir",hex:"#1a1a1a"},{name:"Blanc",hex:"#f5f5f5"},{name:"Rouge",hex:"#CE1126"}], sizes: ["Ajustable"], features: ["Broderie 3D","Coton premium","Ajustable","Lavable"] },
+            { id: 1, name: "Snapback Classic Noir", category: "snapback", price: 2500, originalPrice: 3000, image: "https://i.postimg.cc/L52TphkH/Whats-App-Image-2026-06-09-at-6-43-17-PM.jpg", description: "Casquette snapback premium en coton avec broderie 3D. Ajustable 55-60cm, style urbain elegant. Tissu respirant, parfait pour le climat tropical.", badge: "Best-seller", stock: 12, soldCount: 89, colors: [{name:"Noir",hex:"#1a1a1a"},{name:"Blanc",hex:"#f5f5f5"},{name:"Rouge",hex:"#CE1126"}], sizes: ["Ajustable"], features: ["Broderie 3D","Coton premium","Ajustable","Lavable"] },
             { id: 2, name: "Snapback Drapeau Haiti", category: "snapback", price: 3000, originalPrice: 3500, image: "https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=400&h=400&fit=crop", description: "Edition speciale avec les couleurs du drapeau haitien. Fiertee nationale. Broderie haute qualite, ne decolore pas au soleil.", badge: "Nouveau", stock: 8, soldCount: 34, colors: [{name:"Drapeau",hex:"#00209F"}], sizes: ["Ajustable"], features: ["Couleurs drapeau","Broderie resistante","Ajustable","Edition limitee"] },
             { id: 3, name: "Snapback Or et Noir", category: "snapback", price: 3500, originalPrice: 4200, image: "https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=400&h=400&fit=crop", description: "Design luxe avec accents dores. Pour ceux qui aiment se demarquer. Finitions haut de gamme, logo metal.", badge: "Premium", stock: 5, soldCount: 56, colors: [{name:"Or/Noir",hex:"#D4AF37"}], sizes: ["Ajustable"], features: ["Accents dores","Logo metal","Premium","Ajustable"] },
             { id: 4, name: "Sandales Classiques", category: "sandale", price: 1500, originalPrice: 1800, image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=400&h=400&fit=crop", description: "Sandales confortables en simili-cuir. Parfaites pour le quotidien. Semelle antiderapante, ideal pour les rues de Port-au-Prince.", badge: "Best-seller", stock: 20, soldCount: 156, colors: [{name:"Marron",hex:"#8B4513"},{name:"Noir",hex:"#1a1a1a"}], sizes: ["38","39","40","41","42","43","44"], features: ["Simili-cuir","Semelle antiderapante","Confortable","Durable"] },
@@ -809,7 +812,7 @@
             grid.innerHTML = filtered.map((product) => `
                 <div class="product-card-3d neon-border glass rounded-2xl overflow-hidden reveal">
                     <div class="relative h-64 overflow-hidden group cursor-pointer" onclick="openProductModal(${product.id})">
-                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="image-rendering: -webkit-optimize-contrast;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                             <span class="text-white font-semibold"><i class="fas fa-eye mr-2"></i>Voir details</span>
                         </div>
